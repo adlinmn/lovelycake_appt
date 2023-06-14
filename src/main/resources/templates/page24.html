@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Account</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <h1>LOVELY CAKE BAKERY</h1>
+        </div>
+        <div class="nav-items">
+          <nav>
+            <ul>
+              <li><a href="#">HOME</a></li>
+              <li><a href="#">DESSERT MENU</a></li>
+            </ul>
+          </nav>
+          <div class="icons">
+            <img src="img/profile-icon.png" alt="Profile Icon">
+            <img src="img/trolley-icon.png" alt="Trolley Icon">
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <form>
+        <h2>Create New Account</h2>
+        <h3>ADMIN</h3>
+        <label for="name">Admin ID</label>
+        <input type="text" id="name" name="name" placeholder="Enter admin ID">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <input type="button" value="Sign Up" onclick="showConfirmation()">
+      </form>
+      <p>Already Registered? <a href="#">Login</a></p>
+    </div>
+    <script>
+      function showConfirmation() {
+        var popupContainer = document.createElement('div');
+        popupContainer.className = 'popup-container';
+  
+        var popupMessage = document.createElement('div');
+        popupMessage.className = 'popup-message';
+        popupMessage.textContent = 'Are You Sure You Want to Save this Information?';
+        popupContainer.appendChild(popupMessage);
+  
+        var popupButtons = document.createElement('div');
+        popupButtons.className = 'popup-buttons';
+  
+        var saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+        saveButton.onclick = function() {
+          // Save button clicked
+          // Add your save logic here
+          alert('Information saved successfully!');
+          document.body.removeChild(popupContainer);
+        };
+        popupButtons.appendChild(saveButton);
+  
+        var cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.onclick = function() {
+          // Cancel button clicked
+          // Add any cancel logic here
+          alert('Information not saved!');
+          document.body.removeChild(popupContainer);
+        };
+        popupButtons.appendChild(cancelButton);
+  
+        popupContainer.appendChild(popupButtons);
+  
+        document.body.appendChild(popupContainer);
+      }
+    </script>>
+  </body>
+</html>
+
+<style>
+  header .nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f8def3;
+	padding: 3px;
+  }
+  
+  header .nav-items {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	
+  }
+  
+  header .nav-items nav ul {
+	display: flex;
+	list-style: none;
+  }
+  
+  header .nav-items nav ul li {
+	margin: 0 10px;
+  }
+  
+  header .nav-items .icons {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+  }
+  
+  header .nav-items .icons img {
+	height: 30px;
+	margin-left: 20px;
+  }
+  
+  .container {
+	max-width: 500px;
+	margin: 0 auto;
+  }
+  
+  form {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+	text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+    color: pink;
+  }
+  
+  label {
+	display: block;
+	margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #000000;
+	border-radius: 5px;
+	font-size: 16px;
+  }
+  
+  input[type="button"] {
+	background-color: #F6D8EF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 0 auto;
+	
+
+  }
+  
+  a {
+	color: #141414;
+	text-decoration: none;
+  }
+  
+  a:hover {
+	text-decoration: underline;
+  }
+  
+  body {
+	background-image: url('/img/bg.jpg');
+	background-size: cover;
+  }
+
+  .popup-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fbd1e3;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+    }
+
+    .popup-message {
+      text-align: center;
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .popup-buttons {
+      text-align: center;
+    }
+
+    .popup-buttons button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #fff;
+      color: #ffb9d7;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-buttons button:hover {
+      background-color: #f8d7e3;
+    }
+  
+</style>

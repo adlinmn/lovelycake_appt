@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bakery Homepage</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+      /* Add your additional styles here */
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url(img/bg.jpg);
+
+      }
+      .header {
+        background-color: #f8def3;
+        padding: 3px;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .logo h1 {
+        font-size: 24px;
+        margin: 0;
+        color: #000000;
+
+      }
+      .nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav li {
+        display: inline-block;
+        margin-right: 20px;
+      }
+      .nav a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 16px;
+      }
+      .hero-section {
+        background-image: url('img/cute-cake-background.jpg');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 50px;
+        text-align: center;
+      }
+      .hero-section h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color:#ffc0cb;
+      }
+      .hero-section p {
+        font-size: 18px;
+        color: #ffc0cb;
+      }
+      .feature-section {
+        background-color: #fff;
+        padding: 50px;
+        text-align: center;
+      }
+      .feature-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+      }
+      .feature-items h2 {
+        font-family: 'Arial Black', sans-serif;
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #ffc0cb;
+      }
+      .feature-item {
+        flex-basis: 33.33%;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #ffc0cb;
+        background-color: #ffffff;
+        transition: transform 0.3s ease-in-out;
+      }
+      .feature-item:hover {
+        transform: scale(1.05);
+      }
+      .feature-item img {
+        height: 200px;
+        width: 200px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        border: 4px solid #000000;
+      }
+      .feature-item p {
+        margin: 0;
+      }
+      .quote-section {
+        background-color: black;
+        text-align: center;
+        padding: 30px 0;
+      }
+      .quote-box {
+        width: 400px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      .quote-box p {
+        font-size: 24px;
+        color: #000;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <h1>LOVELY CAKE BAKERY</h1>
+        </div>
+        <div class="nav-items">
+          <nav>
+            <ul>
+              <li><a href="homePage.html">HOME</a></li>
+              <li><a href="#">DESSERT MENU</a></li>
+            </ul>
+          </nav>
+          <div class="icons">
+            <a href="index.html"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+            <img src="img/trolley-icon.png" alt="Trolley Icon">
+          </div>
+        </div>
+      </div>
+    </header>
+    
+
+    <div class="hero-section">
+      <h2>Welcome to Lovely Cake Bakery</h2>
+      <p>STRESSED IS DESSERT SPELLED BACKWARDS</p>
+    </div>
+
+    <div class="feature-section">
+      <h2 style="color: #ffc0cb;">MEET OUR SWEET LUXURY</h2>
+      <div class="feature-items">
+        <div class="feature-item">
+          <a href="cake.html">
+            <img src="img/cake-icon.jpg" alt="Cake Icon">
+            <p>Cakes</p>
+          </a>
+        </div>
+        <div class="feature-item">
+          <a href="pastry.html">
+            <img src="img/pastry-icon.jpg" alt="Pastry Icon">
+            <p>Pastries</p>
+          </a>
+        </div>
+        <div class="feature-item">
+          <a href="cupcake.html">
+            <img src="img/cupcake-icon.jpg" alt="Cupcake Icon">
+            <p>Cupcakes</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Rest of your bakery homepage content goes here -->
+
+    <script>
+      // Your JavaScript code here
+      // ...
+    </script>
+  </body>
+</html>

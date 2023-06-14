@@ -1,0 +1,150 @@
+<!DOCTYPE html>  
+<html>  
+<head> 
+	<title>Create Account</title> 
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<style>  
+button {  
+border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer; 
+}  
+.button-button1 {background-color: #f6d8ef;} /* Green */
+.button-button2 {background-color: #f6d8ef;} /* Blue */
+p{  
+font-size: 25px;  
+}  
+
+</style> 
+<body>
+	<header>
+<div class="nav-container">
+	<div class="logo">
+	  <h1>LOVELY CAKE BAKERY</h1>
+	</div>
+	<div class="nav-items">
+	  <nav>
+		<ul>
+		  <li><a href="#">HOME</a></li>
+		  <li><a href="#">DESSERT MENU</a></li>
+		</ul>
+	  </nav>
+	  <div class="icons">
+		<img src="img/profile-icon.png" alt="Profile Icon">
+        <img src="img/trolley-icon.png" alt="Trolley Icon">
+	  </div>
+	</div>
+  </div>
+</header>
+<div style="text-align: center;">
+<centre> 
+<h1>Create new Account</h1>
+<h3>Already Registered? Login</h3>
+</centre> 
+</div>
+</head> 
+<div class="container">
+	<div class="center">  
+	<div class="button-wrapper">
+    <a th:href="@{/page21}">
+      <button class="button-button1">CUSTOMER</button>
+    </a>
+    <a th:href="@{/page24}">
+    <button class="button-button2">ADMIN</button>
+  </a>
+		</div>
+	</div>  
+</div>
+</body>  
+</html>  
+<style> 
+header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8def3;
+    padding: 3px;
+  }
+  
+  header .nav-items {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  header .nav-items nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  header .nav-items nav ul li {
+    margin: 0 10px;
+  }
+  
+  header .nav-items .icons {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  
+  header .nav-items .icons img {
+    height: 30px;
+    margin-left: 20px;
+  }
+  
+  a {
+	color: #141414;
+	text-decoration: none;
+  }
+  
+  a:hover {
+	text-decoration: underline;
+  }
+  
+  body {
+	background-image: url('/img/bg.jpg');
+	background-size: cover;
+  }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    max-width : 500px;
+    margin : 10px ;
+  }
+  .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-button1
+  .button-button2
+  .h1
+  .h3
+   {
+    width: 150px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    margin: 5px;
+  }
+</style>
+
+</div> 
+</html>
