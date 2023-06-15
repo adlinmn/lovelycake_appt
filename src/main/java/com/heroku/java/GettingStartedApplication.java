@@ -96,6 +96,21 @@ public class GettingStartedApplication {
         return "adminlogin";
     }
 
+        @GetMapping("LoginOption")
+    public String LoginOption() {
+        return "LoginOption";
+    }
+
+    @GetMapping("updateAcc")
+    public String updateAcc() {
+        return "updateAcc";
+    }
+
+    @GetMapping("viewAccCust")
+    public String viewAccCust() {
+        return "viewAccCust";
+    }
+
     @GetMapping("/database")
     String database(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
