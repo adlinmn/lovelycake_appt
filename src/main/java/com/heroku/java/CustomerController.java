@@ -38,7 +38,7 @@ public class CustomerController {
       String sql = "INSERT INTO customer (name, address, email, password) VALUES (?,?,?,?)";
       final var statement = connection.prepareStatement(sql);
 
-      statement.setString(1, customer.getFullname());
+      statement.setString(1, customer.getName());
       statement.setString(2, customer.getAddress());
       statement.setString(3, customer.getEmail());
       statement.setString(4, customer.getPassword());
