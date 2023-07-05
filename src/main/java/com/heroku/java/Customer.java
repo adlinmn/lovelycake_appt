@@ -2,24 +2,24 @@ package com.heroku.java;
 
 
 public class Customer {
-    private String fullname;
+    private String name;
     private String address;
     private String email;
     private String password;
 
-    public Customer(String fullname, String address, String email, String password) {
-        this.fullname = fullname;
+    public Customer(String name, String address, String email, String password) {
+        this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getName() {
+        return name;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
