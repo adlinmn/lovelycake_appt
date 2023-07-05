@@ -96,7 +96,7 @@ public class GettingStartedApplication {
         return "adminlogin";
     }
 
-        @GetMapping("LoginOption")
+    @GetMapping("LoginOption")
     public String LoginOption() {
         return "LoginOption";
     }
@@ -137,3 +137,4 @@ public class GettingStartedApplication {
         SpringApplication.run(GettingStartedApplication.class, args);
     }
 }
+
