@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Menu</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    /* Add your additional styles here */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #000000;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+    .hero-section {
+      background-image: url('img/cute-cake-background.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 5px;
+      text-align: center;
+    }
+    .hero-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #ffc0cb;
+    }
+    .hero-section p {
+      font-size: 18px;
+      color: #ffc0cb;
+    }
+    .create-menu-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 20px;
+      height: calc(100vh - 160px); /* Utilize the available vertical space */
+    }
+    .menu-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between; /* Add space between the frames */
+      margin: 10px; /* Add margin to create space between columns */
+    }
+    .menu-frame {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      border: 2px solid #ffc0cb;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+    .menu-frame .menu-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .menu-frame .menu-image-overlay {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ffc0cb;
+      color: #fff;
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .menu-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 10px; /* Add margin to create space between columns */
+    }
+    .menu-details input[type="text"],
+    .menu-details textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ffc0cb;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .menu-details button {
+      padding: 10px 20px;
+      background-color: #ffc0cb;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .confirmation-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      background-color: #ffc0cb;
+      border-radius: 10px;
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+    }
+    .confirmation-message h3 {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    .confirmation-message button {
+      padding: 10px 20px;
+      background-color: #fff;
+      border: none;
+      color: #000;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    /* Add this CSS code to your existing styles */
+.category-selection {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-selection label {
+  margin-right: 10px;
+}
+
+.menu-details input[type="text"],
+.menu-details textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ffc0cb;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.menu-details button {
+  padding: 10px 20px;
+  background-color: #ffc0cb;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="logo">
+      <h1>LOVELY CAKE BAKERY</h1>
+    </div>
+    <div class="nav-items">
+      <nav>
+        <ul>
+          <li><a href="adminHomePage.html">HOME</a></li>
+          <li><a href="#">DESSERT MENU</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a href="indexAdmin.html"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="hero-section">
+    <h2>CREATE MENU</h2>
+</div>
+
+<div class="create-menu-container">
+  <div class="menu-column">
+    <div class="menu-frame">
+      <img class="menu-image" src="#" alt="Menu Image">
+      <div class="menu-image-overlay">
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+    <div class="menu-frame">
+      <img class="menu-image" src="#" alt="Menu Image">
+      <div class="menu-image-overlay">
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+  </div>
+  <div class="menu-column">
+    <div class="menu-frame">
+      <img class="menu-image" src="#" alt="Menu Image">
+      <div class="menu-image-overlay">
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+    <div class="menu-frame">
+      <img class="menu-image" src="#" alt="Menu Image">
+      <div class="menu-image-overlay">
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+  </div>
+  <div class="menu-details">
+    <div class="category-selection">
+      <label>
+        <input type="radio" name="category" value="Cake" checked> Cake
+      </label>
+      <label>
+        <input type="radio" name="category" value="Pastry"> Pastry
+      </label>
+      <label>
+        <input type="radio" name="category" value="Cupcake"> Cupcake
+      </label>
+    </div>
+    <input type="text" placeholder="Name of the Product">
+    <textarea placeholder="Description"></textarea>
+    <input type="text" placeholder="Price">
+    <button id="saveButton">Save</button>
+  </div>
+  
+
+<div class="confirmation-message" id="confirmationModal">
+  <h3>Are you sure you want to save this menu?</h3>
+  <button id="confirmSaveButton">Save</button>
+  <button id="cancelButton">Cancel</button>
+</div>
+
+<script>
+  // Your JavaScript code here
+ // Your JavaScript code here
+const menuFrames = document.querySelectorAll(".menu-frame");
+const overlayButtons = document.querySelectorAll(".menu-image-overlay");
+const saveButton = document.getElementById("saveButton");
+const confirmationModal = document.getElementById("confirmationModal");
+const confirmSaveButton = document.getElementById("confirmSaveButton");
+const cancelButton = document.getElementById("cancelButton");
+const categorySelection = document.querySelector(".category-selection");
+
+overlayButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Open file upload dialog here
+    console.log("File upload dialog should open");
+  });
+});
+
+saveButton.addEventListener("click", () => {
+  confirmationModal.style.display = "block";
+});
+
+confirmSaveButton.addEventListener("click", () => {
+  confirmationModal.style.display = "none";
+  alert("New Menu is Created");
+  // Add code to save the menu details
+});
+
+cancelButton.addEventListener("click", () => {
+  confirmationModal.style.display = "none";
+});
+
+overlayButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Simulate file selection process
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageUrl = e.target.result;
+          const menuImage = button.previousElementSibling;
+          menuImage.src = imageUrl;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    fileInput.click();
+  });
+});
+
+categorySelection.addEventListener("change", (event) => {
+  const selectedCategory = event.target.value;
+  console.log("Selected Category:", selectedCategory);
+});
+
+</script>
+</body>
+</html>
