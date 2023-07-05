@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>View Account Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+  <style>
+    body {
+      background-image: url(img/bg.jpg);
+      background-size: cover;
+    }
+    
+    header .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    
+    header .nav-items {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    
+    header .nav-items nav ul {
+	display: flex;
+	list-style: none;
+  }
+    
+    header .nav-items nav ul li a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    header .nav-items .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+    
+    header .nav-items .icons img {
+      height: 30px;
+      margin-left: 20px;
+    }
+    
+    .container {
+    position: relative;
+  }
+
+  .container .form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .container .form-buttons button {
+    flex: 0 0 auto;
+    width: 100px; /* Adjust the width to your desired size */
+  }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      background-color: #f6d8ef;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.74;
+    }
+    
+    h2 {
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    label {
+      margin: 0;
+      font-size: 20px;
+      margin-right: auto;
+    }
+    
+    #AdminID {
+      padding: 10px;
+      margin-bottom: 10px;
+      margin-right: auto;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea {
+      padding: 10px;
+      margin-bottom: 10px;
+      margin-right: auto;
+      width: 80%;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+    
+    .back {
+      display: inline-block;
+      padding: 10px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      background-color: #A8A2A2;
+      color: #F8F7F6;
+      cursor: pointer;
+      border-radius: 4px;
+      bottom: 0;
+      right: 0;
+    }
+
+    input[type="delete"] {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      background-color: #CD2612;
+      color: #F8F7F6;
+      cursor: pointer;
+      border-radius: 4px;
+      bottom: 0;
+      right: 0;
+    }
+    
+  
+    .popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fbd1e3;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+      }
+  
+      .popup-message {
+        text-align: center;
+        font-size: 25px;
+        color: #000000;
+        margin-bottom: 20px;
+      }
+  
+      .popup-buttons {
+        text-align: center;
+      }
+  
+      .popup-buttons button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #C896BC;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+  
+      .popup-buttons button:hover {
+        background-color: #f8d7e3;
+        color: #000000;
+      }
+    
+    /* Updated styles */
+    header .nav-items nav ul li a {
+      color: black;
+    }
+
+    .back {
+      margin-right: 10px;
+      background-color: #A8A2A2;
+      color: #F8F7F6;
+    }
+
+    input[type="delete"] {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  background-color: #CD2612;
+  color: #F8F7F6;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px; /* Adjust the width to your desired size */
+}
+    
+  </style>
+  
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <h1>LOVELY CAKE BAKERY</h1>
+        </div>
+        <div class="nav-items">
+          <nav>
+            <ul>
+              <li><a th:href="@{adminHomePage}">HOME</a></li>
+              <li><a href="#">DESSERT MENU</a></li>
+            </ul>
+          </nav>
+          <div class="icons">
+            <a th:href="@{/indexAdmin}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+    <h2>My Account - Admin</h2>
+      <form>
+            <label for="AdminID">ADMIN ID</label> <br>
+            <input type="number" id="AdminID" name="AdminID" readonly value="202048">
+            <br><br>
+
+            <label for="name">NAME</label> <br>
+            <input type="text" id="FirstName" name="name" readonly value="Alia">
+            <input type="text" id="LastName" name="name" readonly value="Natasha">
+            <br><br>
+
+            <label for="password">PASSWORD</label> <br>
+            <input type="password" id="password" name="password" readonly value="*********">
+            <br><br>
+        
+            <div class="form-buttons">
+                <a class="back" th:href="@{/indexAdmin}">BACK</a>    
+                <input type="delete" value="DELETE" onclick="showConfirmation()">
+              </div>
+      </form>
+    </div>
+    <script>
+      function showConfirmation() {
+        var popupContainer = document.createElement('div');
+        popupContainer.className = 'popup-container';
+  
+        var popupMessage = document.createElement('div');
+        popupMessage.className = 'popup-message';
+        popupMessage.textContent = 'Are You Sure You Want to Delete Your Account?';
+        popupContainer.appendChild(popupMessage);
+  
+        var popupButtons = document.createElement('div');
+        popupButtons.className = 'popup-buttons';
+  
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Confirm';
+        deleteButton.onclick = function() {
+          alert('Account is deleted');
+          document.body.removeChild(popupContainer);
+        };
+        popupButtons.appendChild(deleteButton);
+  
+        var cancelButton = document.createElement('button');
+        cancelButton.textContent = 'No';
+        cancelButton.onclick = function() {
+          document.body.removeChild(popupContainer);
+        };
+        popupButtons.appendChild(cancelButton);
+  
+        popupContainer.appendChild(popupButtons);
+  
+        document.body.appendChild(popupContainer);
+      }
+    </script>
+  </body>
+</html>

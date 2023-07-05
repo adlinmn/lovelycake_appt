@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OrderList Check</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    header .nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f8def3;
+	padding: 3px;
+  }
+  
+  header .nav-items {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	
+  }
+  
+  header .nav-items nav ul {
+	display: flex;
+	list-style: none;
+  }
+  
+  header .nav-items nav ul li {
+	margin: 0 10px;
+  }
+  
+  header .nav-items .icons {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+  }
+  
+  header .nav-items .icons img {
+	height: 30px;
+	margin-left: 20px;
+  }
+  
+  .container {
+	max-width: 500px;
+	margin: 0 auto;
+  }
+  a {
+	color: #141414;
+	text-decoration: none;
+  }
+  
+  a:hover {
+	text-decoration: underline;
+  }
+  
+  body {
+	background-image: url('img/background.png');
+	background-size: cover;
+  }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: none;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #fffefe;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .button {
+      margin: 5px;
+      padding: 10px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+      
+    tr.completed .button-container button.button[disabled] {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <h1>LOVELY CAKE BAKERY</h1>
+      </div>
+      <div class="nav-items">
+        <nav>
+          <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">DESSERT MENU</a></li>
+          </ul>
+        </nav>
+        <div class="icons">
+          <img src="img/profile-icon.png" alt="Profile Icon">
+        </div>
+      </div>
+    </div>
+  </header>
+  <h1>Customer's Order List</h1>
+  <h3>Recent Order</h3>
+  <table>
+    <tr>
+      <th>Order</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Total</th>
+    </tr>
+<tr>
+  <td>#113</td>
+  <td>2023-06-10</td>
+  <td>On-hold</td>
+  <td>RM70.00</td>
+  <td class="button-container">
+    <button class="button">View</button>
+    <button class="button">Confirm</button>
+  </td>
+</tr>
+<tr>
+  <td>#112</td>
+  <td>2023-06-09</td>
+  <td>On-hold</td>
+  <td>RM66.00</td>
+  <td class="button-container">
+    <button class="button">View</button>
+    <button class="button">Confirm</button>
+  </td>
+</tr>
+<tr class="completed">
+  <td>#111</td>
+  <td>2023-06-08</td>
+  <td>Completed</td>
+  <td>RM60.00</td>
+  <td class="button-container">
+    <button class="button">View</button>
+    <button class="button" disabled>Confirm</button>
+  </td>
+</tr>
+<tr class="completed">
+  <td>#110</td>
+  <td>2023-06-07</td>
+  <td>Completed</td>
+  <td>RM15.00</td>
+  <td class="button-container">
+    <button class="button">View</button>
+    <button class="button" disabled>Confirm</button>
+  </td>
+</tr>
+  </table>
+
+</body>
+</html>
