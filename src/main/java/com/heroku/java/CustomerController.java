@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.stereotype.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -96,7 +95,7 @@ public class CustomerController {
         } 
  
     }
-        @GetMapping("/viewAccCust")
+        @PostMapping("/viewAccCust")
         public String viewAccCust(HttpSession session, Customer customer, Model model) {
         String email = (String) session.getAttribute("email");
 
