@@ -1,6 +1,5 @@
 package com.heroku.java;
 
-import java.sql.Date;
 
 public class Customer {
     private String fullname;
