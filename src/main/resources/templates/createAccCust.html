@@ -14,7 +14,7 @@
         <div class="nav-items">
           <nav>
             <ul>
-              <li><a th:href="@{homePage}">HOME</a></li>
+              <li><a th:href="@{/homePage}">HOME</a></li>
               <li><a href="#">DESSERT MENU</a></li>
             </ul>
           </nav>
@@ -26,7 +26,10 @@
       </div>
     </header>
     <div class="container">
-      <form>
+      <form
+      method="post"
+      th:action="@{/createAccCust}"
+      >
         <h2>Create New Account</h2>
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your name">
@@ -36,48 +39,48 @@
         <input type="password" id="password" name="password" placeholder="Enter your password">
         <label for="address">Address</label>
         <textarea id="address" name="address" placeholder="Enter your address"></textarea>
-        <input type="button" value="Sign Up" onclick="showConfirmation()">
+        <input type="submit" value="Sign Up" onclick="showConfirmation()">
       </form>
       <p>Already Registered? <a th:href="@{/userlogin}">Login</a></p>
     </div>
-    <script>
-      function showConfirmation() {
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
+    <!-- <script>
+    //   function showConfirmation() {
+    //     var popupContainer = document.createElement('div');
+    //     popupContainer.className = 'popup-container';
   
-        var popupMessage = document.createElement('div');
-        popupMessage.className = 'popup-message';
-        popupMessage.textContent = 'Are You Sure You Want to Save this Information?';
-        popupContainer.appendChild(popupMessage);
+    //     var popupMessage = document.createElement('div');
+    //     popupMessage.className = 'popup-message';
+    //     popupMessage.textContent = 'Are You Sure You Want to Save this Information?';
+    //     popupContainer.appendChild(popupMessage);
   
-        var popupButtons = document.createElement('div');
-        popupButtons.className = 'popup-buttons';
+    //     var popupButtons = document.createElement('div');
+    //     popupButtons.className = 'popup-buttons';
   
-        var saveButton = document.createElement('button');
-        saveButton.textContent = 'Save';
-        saveButton.onclick = function() {
-          // Save button clicked
-          // Add your save logic here
-          alert('Information saved successfully!');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(saveButton);
+    //     var saveButton = document.createElement('button');
+    //     saveButton.textContent = 'Save';
+    //     saveButton.onclick = function() {
+    //       // Save button clicked
+    //       // Add your save logic here
+    //       alert('Information saved successfully!');
+    //       document.body.removeChild(popupContainer);
+    //     };
+    //     popupButtons.appendChild(saveButton);
   
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'Cancel';
-        cancelButton.onclick = function() {
-          // Cancel button clicked
-          // Add any cancel logic here
-          alert('Information not saved!');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(cancelButton);
+    //     var cancelButton = document.createElement('button');
+    //     cancelButton.textContent = 'Cancel';
+    //     cancelButton.onclick = function() {
+    //       // Cancel button clicked
+    //       // Add any cancel logic here
+    //       alert('Information not saved!');
+    //       document.body.removeChild(popupContainer);
+    //     };
+    //     popupButtons.appendChild(cancelButton);
   
-        popupContainer.appendChild(popupButtons);
+    //     popupContainer.appendChild(popupButtons);
   
-        document.body.appendChild(popupContainer);
-      }
-    </script>>
+    //     document.body.appendChild(popupContainer);
+    //   }
+    // </script> -->
   </body>
 </html>
 

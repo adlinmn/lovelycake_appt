@@ -61,10 +61,10 @@ public class GettingStartedApplication {
         return "homePage";
     }
 
-    @GetMapping("createAccCust")
-    public String createAccCust() {
-        return "createAccCust";
-    }
+    // @GetMapping("createAccCust")
+    // public String createAccCust() {
+    //     return "createAccCust";
+    // }
 
     @GetMapping("createAccAdmin")
     public String createAccAdmin() {

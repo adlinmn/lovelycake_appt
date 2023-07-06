@@ -3,6 +3,7 @@ package com.heroku.java;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -46,6 +47,17 @@ public class CustomerController {
             return "redirect:/";
         }
     }
+    
+    @GetMapping("/createAccCust")
+    public String addCustomer(HttpSession session,Customer customer,Model model){
+        return "createAccCust";
+    }
+
+    // @GetMapping("/userlogin")
+    // public String loginUser(HttpSession session,Customer customer,Model model){
+    //     return "userlogin";
+    // }
+
 
     @PostMapping("/userlogin")
     public String homePage(HttpSession session, @ModelAttribute("userlogin") Customer customer, Model model) {
