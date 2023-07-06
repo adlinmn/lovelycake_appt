@@ -42,11 +42,11 @@ header .nav-container {
   }
     
     body {
-      font-family: Arial, sans-serif;
+  
       background-color: #f2f2f2;
       margin: 0;
       padding: 0;
-      background-image: url(img/cake.jpeg);
+      background-image: url('/img/bg.jpg');
     }
     
     .container {
@@ -81,6 +81,8 @@ header .nav-container {
   </style>
 </head>
 <body>
+</head>
+<body>
 
     <header>
       <div class="nav-container">
@@ -90,12 +92,12 @@ header .nav-container {
         <div class="nav-items">
           <nav>
           <ul>
-            <li><a href="#">HOME</a></li>
+            <li><a th:href="@{/homePage}">HOME</a></li>
             <li><a href="#">DESSERT MENU</a></li>
           </ul>
           </nav>
           <div class="icons">
-          <img src="img/profile-icon.png" alt="Profile Icon">
+            <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
           <img src="img/trolley-icon.png" alt="Trolley Icon">
           </div>
         </div>
