@@ -111,6 +111,21 @@ header .nav-container {
 input[type="button"]:hover {
   background-color: #a37099;
 }
+
+input[type="submit"]  {
+      background-color: #c896bc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px; 
+      font-weight: bold; 
+      float: right;  
+    }
+
+input[type="submit"]:hover {
+  background-color: #a37099;
+}
   
   a {
 	color: #141414;
@@ -213,7 +228,7 @@ input[type="button"]:hover {
      
       <input type="button" class="btn2" value="CANCEL" onclick="redirectToPage()">
   
-      <input type="button" class="btn1" value="UPDATE" onclick="showConfirmation()">
+      <input type="submit" class="btn1" value="UPDATE" onclick="showConfirmation()">
     </form>
    
   </div>
@@ -222,16 +237,16 @@ input[type="button"]:hover {
   
 
   <script>
-    function showConfirmation() {
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
+    //function showConfirmation() {
+        //var popupContainer = document.createElement('div');
+        //popupContainer.className = 'popup-container';
   
-        var popupMessage = document.createElement('div');
-        popupMessage.className = 'popup-message';
-        popupMessage.textContent = 'Are You Sure You Want to Update this Information?';
-        popupContainer.appendChild(popupMessage);
+        //var popupMessage = document.createElement('div');
+        //popupMessage.className = 'popup-message';
+       // popupMessage.textContent = 'Are You Sure You Want to Update this Information?';
+        //popupContainer.appendChild(popupMessage);
   
-        var popupButtons = document.createElement('div');
+        //var popupButtons = document.createElement('div');
         popupButtons.className = 'popup-buttons';
   
         var saveButton = document.createElement('button');
@@ -239,30 +254,30 @@ input[type="button"]:hover {
         saveButton.onclick = function() {
           // Save button clicked
           // Add your save logic here
-          alert('Information is successfully updated!');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(saveButton);
+          //alert('Information is successfully updated!');
+          //document.body.removeChild(popupContainer);
+        //};
+        //popupButtons.appendChild(saveButton);
   
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'Cancel';
-        cancelButton.onclick = function() {
+        //var cancelButton = document.createElement('button');
+        //cancelButton.textContent = 'Cancel';
+        //cancelButton.onclick = function() {
           // Cancel button clicked
           // Add any cancel logic here
-          alert('Information not saved!');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(cancelButton);
+          //alert('Information not saved!');
+          //document.body.removeChild(popupContainer);
+        //};
+        //popupButtons.appendChild(cancelButton);
   
-        popupContainer.appendChild(popupButtons);
+        //popupContainer.appendChild(popupButtons);
   
-        document.body.appendChild(popupContainer);
-      }
+       // document.body.appendChild(popupContainer);
+      //}
 
-      function redirectToPage() {
+      //function redirectToPage() {
     // Replace "another-page.html" with the actual URL of the page you want to redirect to
-    window.location.href = "index.html";
-  }
+   // window.location.href = "index.html";
+  }//
   </script>
 </body>
 </html>

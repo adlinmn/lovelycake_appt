@@ -21,7 +21,7 @@ public class GettingStartedApplication {
         this.dataSource = dataSource;
     }
 
-    @GetMapping("/")
+    @GetMapping("index")
     public String index() {
         return "index";
     }

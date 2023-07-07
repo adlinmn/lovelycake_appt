@@ -149,8 +149,8 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/deleteAcc")
-    public String deleteAcc(HttpSession session, Model model) {
+    @PostMapping("/deleteAccCust")
+    public String deleteAccCust(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
 
         if (email != null) {
