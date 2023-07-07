@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Centered Form</title>
+  <title>Update Account Admin</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <style>
 
-    header {
-      position: fixed;
+header {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -85,7 +85,7 @@ header .nav-container {
 	margin-bottom: 5px;
   }
   
-  input[type="text"],
+  input[type="id"],
   input[type="email"],
   input[type="password"],
   textarea {
@@ -109,6 +109,21 @@ header .nav-container {
     }
 
 input[type="button"]:hover {
+  background-color: #a37099;
+}
+
+input[type="submit"]  {
+      background-color: #c896bc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px; 
+      font-weight: bold; 
+      float: right;  
+    }
+
+input[type="submit"]:hover {
   background-color: #a37099;
 }
   
@@ -181,13 +196,12 @@ input[type="button"]:hover {
           <div class="nav-items">
             <nav>
             <ul>
-              <li><a href="#">HOME</a></li>
+              <li><a th:href="@{adminHomePage}">HOME</a></li>
               <li><a href="#">DESSERT MENU</a></li>
             </ul>
             </nav>
             <div class="icons">
             <img src="img/profile-icon.png" alt="Profile Icon">
-            <img src="img/trolley-icon.png" alt="Trolley Icon">
             </div>
           </div>
           </div>
@@ -202,67 +216,19 @@ input[type="button"]:hover {
 
   <div class="container">
     <form>
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name">
+      <label for="id">ID</label>
+      <input type="id" id="id" name="id" placeholder="Enter your ID">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="Enter your email">
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Enter your password">
-      <label for="address">Address</label>
-      <textarea id="address" name="address" placeholder="Enter your address"></textarea>
      
       <input type="button" class="btn2" value="CANCEL" onclick="redirectToPage()">
   
-      <input type="button" class="btn1" value="UPDATE" onclick="showConfirmation()">
+      <input type="submit" class="btn1" value="UPDATE" onclick="showConfirmation()">
     </form>
    
   </div>
   </form>
-
-  
-
-  <script>
-    function showConfirmation() {
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
-  
-        var popupMessage = document.createElement('div');
-        popupMessage.className = 'popup-message';
-        popupMessage.textContent = 'Are You Sure You Want to Update this Information?';
-        popupContainer.appendChild(popupMessage);
-  
-        var popupButtons = document.createElement('div');
-        popupButtons.className = 'popup-buttons';
-  
-        var saveButton = document.createElement('button');
-        saveButton.textContent = 'Update';
-        saveButton.onclick = function() {
-          // Save button clicked
-          // Add your save logic here
-          alert('Information is successfully updated!');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(saveButton);
-  
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'Cancel';
-        cancelButton.onclick = function() {
-          // Cancel button clicked
-          // Add any cancel logic here
-          alert('Information not saved!');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(cancelButton);
-  
-        popupContainer.appendChild(popupButtons);
-  
-        document.body.appendChild(popupContainer);
-      }
-
-      function redirectToPage() {
-    // Replace "another-page.html" with the actual URL of the page you want to redirect to
-    window.location.href = "indexAdmin.html";
-  }
-  </script>
 </body>
 </html>
