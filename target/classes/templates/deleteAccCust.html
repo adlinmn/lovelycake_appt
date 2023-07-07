@@ -6,7 +6,7 @@
   </head>
   <style>
     body {
-      background-image: url('/img/bg.jpg');
+      background-image: url('/img/bg.png');
       background-size: cover;
     }
     
@@ -263,37 +263,37 @@
       </form>
     </div>
     <script>
-      function showConfirmation() {
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
+      //function showConfirmation() {
+        //var popupContainer = document.createElement('div');
+        //popupContainer.className = 'popup-container';
   
-        var popupMessage = document.createElement('div');
-        popupMessage.className = 'popup-message';
-        popupMessage.textContent = 'Are You Sure You Want to Delete Your Account?';
-        popupContainer.appendChild(popupMessage);
+        //var popupMessage = document.createElement('div');
+        //popupMessage.className = 'popup-message';
+        //popupMessage.textContent = 'Are You Sure You Want to Delete Your Account?';
+        //popupContainer.appendChild(popupMessage);
   
-        var popupButtons = document.createElement('div');
-        popupButtons.className = 'popup-buttons';
+       // var popupButtons = document.createElement('div');
+       // popupButtons.className = 'popup-buttons';
   
-        var deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Confirm';
-        deleteButton.onclick = function() {
-          alert('Account is deleted');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(deleteButton);
+        //var deleteButton = document.createElement('button');
+        //deleteButton.textContent = 'Confirm';
+        //deleteButton.onclick = function() {
+         // alert('Account is deleted');
+          //document.body.removeChild(popupContainer);
+       // ;
+        //popupButtons.appendChild(deleteButton);
   
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'No';
-        cancelButton.onclick = function() {
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(cancelButton);
+        //var cancelButton = document.createElement('button');
+        //cancelButton.textContent = 'No';
+        //cancelButton.onclick = function() {
+         // document.body.removeChild(popupContainer);
+       // };
+        //popupButtons.appendChild(cancelButton);
   
-        popupContainer.appendChild(popupButtons);
+        //popupContainer.appendChild(popupButtons);
   
-        document.body.appendChild(popupContainer);
-      }
+        //document.body.appendChild(popupContainer);
+      
     </script>
   </body>
 </html>
