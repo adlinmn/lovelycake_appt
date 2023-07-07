@@ -14,7 +14,7 @@
         <div class="nav-items">
           <nav>
             <ul>
-              <li><a th:href="@{homePage}">HOME</a></li>
+              <li><a th:href="@{/homePage}">HOME</a></li>
               <li><a href="#">DESSERT MENU</a></li>
             </ul>
           </nav>
@@ -37,11 +37,11 @@
         <input type="email" id="email" name="email" placeholder="Enter your email">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder="Enter your password">
-        <a th:href="@{homePage}" class="centered-button">
+        <a th:href="@{/homePage}" class="centered-button">
           <input type="button" value="Login">
         </a>
         <p class="centered-text">Not a member?</p>
-        <a th:href="@{createAccCust}" class="centered-button create-account-btn">Create Account</a>
+        <a th:href="@{/createAccCust}" class="centered-button create-account-btn">Create Account</a>
       </form>
     </div>
 

@@ -40,6 +40,61 @@
         display: inline-block;
         margin-right: 20px;
       }
+
+      header .nav-container {
+	    display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	  background-color: #f8def3;
+	  padding: 3px;
+    }
+  
+    header .nav-items {
+	    display: flex;
+	    align-items: center;
+	    margin-left: auto;
+    }
+  
+    header .nav-items nav ul {
+	    display: flex;
+	    list-style: none;
+    }
+  
+    header .nav-items nav ul li {
+	    margin: 0 10px;
+    }
+  
+    header .nav-items .icons {
+	    display: flex;
+	    align-items: center;
+	    margin-left: 20px;
+    }
+  
+    header .nav-items .icons img {
+	    height: 30px;
+	    margin-left: 20px;
+    }
+    
+    body {
+  
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      background-image: url('/img/bg.png');
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      align-content: left;/* Align content to the left */
+    }
+    
+    .user-icon {
+      width: 100px;
+      height: 100px;
+      margin-right: 10px; /* Add some spacing between the icon and buttons */
+    }
       .nav a {
         text-decoration: none;
         color: #fff;
@@ -128,12 +183,12 @@
         <div class="nav-items">
           <nav>
             <ul>
-              <li><a href="homePage.html">HOME</a></li>
+              <li><a th:href="@{/homePage}">HOME</a></li>
               <li><a href="#">DESSERT MENU</a></li>
             </ul>
           </nav>
           <div class="icons">
-            <a href="index.html"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+            <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
             <img src="img/trolley-icon.png" alt="Trolley Icon">
           </div>
         </div>
@@ -145,38 +200,29 @@
       <h2>Welcome to Lovely Cake Bakery</h2>
       <p>STRESSED IS DESSERT SPELLED BACKWARDS</p>
     </div>
-
     <div class="feature-section">
       <h2 style="color: #ffc0cb;">MEET OUR SWEET LUXURY</h2>
       <div class="feature-items">
         <div class="feature-item">
           <a href="cake.html">
-            <img src="img/cake-icon.jpg" alt="Cake Icon">
+            <img src="img/cake-icon.png" alt="Cake Icon">
             <p>Cakes</p>
           </a>
         </div>
         <div class="feature-item">
           <a href="pastry.html">
-            <img src="img/pastry-icon.jpg" alt="Pastry Icon">
+            <img src="img/pastry-icon.png" alt="Pastry Icon">
             <p>Pastries</p>
           </a>
         </div>
         <div class="feature-item">
           <a href="cupcake.html">
-            <img src="img/cupcake-icon.jpg" alt="Cupcake Icon">
+            <img src="img/cupcake-icon.png" alt="Cupcake Icon">
             <p>Cupcakes</p>
           </a>
         </div>
       </div>
     </div>
 
-
-    <!-- Rest of your bakery homepage content goes here -->
-
-    <script>
-      // Your JavaScript code here
-      // ...
-    </script>
   </body>
 </html>
-

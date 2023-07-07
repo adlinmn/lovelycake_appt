@@ -26,20 +26,6 @@ public class GettingStartedApplication {
         return "index";
     }
     
-    @GetMapping("page20")
-    public String page20() {
-        return "page20";
-    }
-    
-    @GetMapping("page21")
-    public String page21() {
-        return "page21";
-    }
-    
-    @GetMapping("page24")
-    public String page24() {
-        return "page24";
-    }
 
     @GetMapping("adminHomePage")
     public String adminHomePage() {
