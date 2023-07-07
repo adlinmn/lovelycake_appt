@@ -26,9 +26,7 @@
       </div>
     </header>
     <div class="container">
-      <form
-      method="post"
-      th:action="@{/createAccCust}"
+      <form method="post" th:action="@{/createAccCust}"
       >
         <h2>Create New Account</h2>
         <label for="name">Name</label>
@@ -43,44 +41,6 @@
       </form>
       <p>Already Registered? <a th:href="@{/userlogin}">Login</a></p>
     </div>
-    <!-- <script>
-    //   function showConfirmation() {
-    //     var popupContainer = document.createElement('div');
-    //     popupContainer.className = 'popup-container';
-  
-    //     var popupMessage = document.createElement('div');
-    //     popupMessage.className = 'popup-message';
-    //     popupMessage.textContent = 'Are You Sure You Want to Save this Information?';
-    //     popupContainer.appendChild(popupMessage);
-  
-    //     var popupButtons = document.createElement('div');
-    //     popupButtons.className = 'popup-buttons';
-  
-    //     var saveButton = document.createElement('button');
-    //     saveButton.textContent = 'Save';
-    //     saveButton.onclick = function() {
-    //       // Save button clicked
-    //       // Add your save logic here
-    //       alert('Information saved successfully!');
-    //       document.body.removeChild(popupContainer);
-    //     };
-    //     popupButtons.appendChild(saveButton);
-  
-    //     var cancelButton = document.createElement('button');
-    //     cancelButton.textContent = 'Cancel';
-    //     cancelButton.onclick = function() {
-    //       // Cancel button clicked
-    //       // Add any cancel logic here
-    //       alert('Information not saved!');
-    //       document.body.removeChild(popupContainer);
-    //     };
-    //     popupButtons.appendChild(cancelButton);
-  
-    //     popupContainer.appendChild(popupButtons);
-  
-    //     document.body.appendChild(popupContainer);
-    //   }
-    // </script> -->
   </body>
 </html>
 
@@ -162,10 +122,20 @@
 	font-size: 16px;
 	cursor: pointer;
 	margin: 0 auto;
-	
-
   }
   
+  input[type="submit"] {
+	background-color: #F6D8EF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 0 auto;
+
+  }
+
   a {
 	color: #141414;
 	text-decoration: none;

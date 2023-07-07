@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
@@ -52,10 +53,10 @@ public class GettingStartedApplication {
     //     return "createAccCust";
     // }
 
-    @GetMapping("createAccAdmin")
-    public String createAccAdmin() {
-        return "createAccAdmin";
-    }
+    //@GetMapping("createAccAdmin")
+    //public String createAccAdmin() {
+       // return "createAccAdmin";
+    //}
 
     @GetMapping("updateAccAdmin")
     public String updateAccAdmin() {
@@ -122,5 +123,31 @@ public class GettingStartedApplication {
     public static void main(String[] args) {
         SpringApplication.run(GettingStartedApplication.class, args);
     }
+
+    public class GCOverhead {
+  public static void main(String[] args) throws Exception {
+    Map<Long, Long> map = new HashMap<>();
+    for (long i = 0l; i < Long.MAX_VALUE; i++) {
+      map.put(i, i);
+    }
+  }
+}
+
+public class ThreadsLimits {
+    public static void main(String[] args) throws Exception {
+      while (true) {
+        new Thread(
+            new Runnable() {
+              @Override
+              public void run() {
+                try {
+                  Thread.sleep(1000 * 60 * 60 * 24);
+                } catch (Exception ex) {}
+              }
+            }
+        ).start();
+      }
+    }
+  }
 }
 

@@ -53,11 +53,6 @@ public class CustomerController {
         return "createAccCust";
     }
 
-    // @GetMapping("/userlogin")
-    // public String loginUser(HttpSession session,Customer customer,Model model){
-    //     return "userlogin";
-    // }
-
 
     @PostMapping("/userlogin")
     public String homePage(HttpSession session, @ModelAttribute("userlogin") Customer customer, Model model) {
@@ -176,4 +171,3 @@ public class CustomerController {
         return "deleteError";
     }
 }
-

@@ -247,7 +247,7 @@
             <br><br>
 
             <label for="password">PASSWORD</label> <br>
-            <input type="password" id="password" name="password" readonly value="*********">
+            <input type="password" id="password" name="password" readonly value="***">
             <br><br>
         
             <label for="address">ADDRESS</label> <br>
@@ -255,45 +255,8 @@
             <br><br>
         
             <div class="form-buttons">
-                <a class="back" th:href="@{/index}">BACK</a>   
-                <input type="delete" value="DELETE" onclick="showConfirmation()">
+                <a class="back" th:href="@{/homePage}">BACK</a>   
+                <input type="delete" value="DELETE">
               </div>
-              
-              
-      </form>
-    </div>
-    <script>
-      function showConfirmation() {
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
-  
-        var popupMessage = document.createElement('div');
-        popupMessage.className = 'popup-message';
-        popupMessage.textContent = 'Are You Sure You Want to Delete Your Account?';
-        popupContainer.appendChild(popupMessage);
-  
-        var popupButtons = document.createElement('div');
-        popupButtons.className = 'popup-buttons';
-  
-        var deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Confirm';
-        deleteButton.onclick = function() {
-          alert('Account is deleted');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(deleteButton);
-  
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'No';
-        cancelButton.onclick = function() {
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(cancelButton);
-  
-        popupContainer.appendChild(popupButtons);
-  
-        document.body.appendChild(popupContainer);
-      }
-    </script>
   </body>
 </html>

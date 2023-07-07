@@ -203,78 +203,43 @@
   </style>
   
   <body>
-    <header>
-      <div class="nav-container">
-        <div class="logo">
-          <h1>LOVELY CAKE BAKERY</h1>
-        </div>
-        <div class="nav-items">
-          <nav>
-            <ul>
-              <li><a th:href="@{/adminHomePage}">HOME</a></li>
-              <li><a href="#">DESSERT MENU</a></li>
-            </ul>
-          </nav>
-          <div class="icons">
-            <a th:href="@{/indexAdmin}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+      <header>
+        <div class="nav-container">
+          <div class="logo">
+            <h1>LOVELY CAKE BAKERY</h1>
+          </div>
+          <div class="nav-items">
+            <nav>
+              <ul>
+                <li><a th:href="@{/adminHomePage}">HOME</a></li>
+                <li><a href="#">DESSERT MENU</a></li>
+              </ul>
+            </nav>
+            <div class="icons">
+              <a th:href="@{/indexAdmin}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-    <div class="container">
-    <h2>My Account - Admin</h2>
-      <form>
-            <label for="AdminID">ADMIN ID</label> <br>
-            <input type="number" id="AdminID" name="AdminID" readonly value="202048">
-            <br><br>
-
-            <label for="name">NAME</label> <br>
-            <input type="text" id="FirstName" name="name" readonly value="Alia">
-            <input type="text" id="LastName" name="name" readonly value="Natasha">
-            <br><br>
-
-            <label for="password">PASSWORD</label> <br>
-            <input type="password" id="password" name="password" readonly value="*********">
-            <br><br>
-        
-            <div class="form-buttons">
-                <a class="back" th:href="@{/indexAdmin}">BACK</a>    
-                <input type="delete" value="DELETE" onclick="showConfirmation()">
-              </div>
-      </form>
-    </div>
-    <script>
-      function showConfirmation() {
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
+      </header>
+      <div class="container">
+      <h2>My Account - Admin</h2>
+        <form>
+              <label for="AdminID">ADMIN ID</label> <br>
+              <input type="number" id="AdminID" name="AdminID" readonly value="202048">
+              <br><br>
   
-        var popupMessage = document.createElement('div');
-        popupMessage.className = 'popup-message';
-        popupMessage.textContent = 'Are You Sure You Want to Delete Your Account?';
-        popupContainer.appendChild(popupMessage);
+              <label for="name">NAME</label> <br>
+              <input type="text" id="FirstName" name="name" readonly value="Alia">
+              <input type="text" id="LastName" name="name" readonly value="Natasha">
+              <br><br>
   
-        var popupButtons = document.createElement('div');
-        popupButtons.className = 'popup-buttons';
-  
-        var deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Confirm';
-        deleteButton.onclick = function() {
-          alert('Account is deleted');
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(deleteButton);
-  
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'No';
-        cancelButton.onclick = function() {
-          document.body.removeChild(popupContainer);
-        };
-        popupButtons.appendChild(cancelButton);
-  
-        popupContainer.appendChild(popupButtons);
-  
-        document.body.appendChild(popupContainer);
-      }
-    </script>
+              <label for="password">PASSWORD</label> <br>
+              <input type="password" id="password" name="password" readonly value="***">
+              <br><br>
+          
+              <div class="form-buttons">
+                  <a class="back" th:href="@{/indexAdmin}">BACK</a>    
+                  <input type="delete" value="DELETE">
+                </div>
   </body>
 </html>
