@@ -122,32 +122,8 @@ public class GettingStartedApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GettingStartedApplication.class, args);
-    }
-
-    public class GCOverhead {
-  public static void main(String[] args) throws Exception {
-    Map<Long, Long> map = new HashMap<>();
-    for (long i = 0l; i < Long.MAX_VALUE; i++) {
-      map.put(i, i);
-    }
-  }
+    
+    
 }
-
-public class ThreadsLimits {
-    public static void main(String[] args) throws Exception {
-      while (true) {
-        new Thread(
-            new Runnable() {
-              @Override
-              public void run() {
-                try {
-                  Thread.sleep(1000 * 60 * 60 * 24);
-                } catch (Exception ex) {}
-              }
-            }
-        ).start();
-      }
-    }
   }
-}
 
