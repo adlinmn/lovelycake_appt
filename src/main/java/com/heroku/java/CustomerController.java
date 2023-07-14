@@ -133,7 +133,6 @@ public class CustomerController {
             statement.setString(2, address);
             statement.setString(3, email);
             statement.setString(4, password);
-            statement.setString(5, email);
 
             statement.executeUpdate();
 

@@ -82,7 +82,7 @@
       margin-right: auto;
     }
     
-    #AdminID {
+    #Email {
       padding: 10px;
       margin-bottom: 10px;
       margin-right: auto;
@@ -202,7 +202,7 @@
 
 /* ... existing styles ... */
 
-#CustomerID {
+#Name {
   padding: 10px;
   margin-bottom: 10px;
   margin-right: auto;
@@ -234,29 +234,66 @@
         </div>
       </div>
     </header>
-    <div class="container">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>LOVELY CAKE BAKERY</h1>
+      </div>
+      <div class="nav-items">
+        <nav>
+          <ul>
+            <li><a th:href="@{/homePage}"style="color: black;">HOME</a></li>
+            <li><a href="#" style="color: black;">DESSERT MENU</a></li>
+          </ul>
+        </nav>
+        <div class="icons">
+          <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+          <img src="img/trolley-icon.png" alt="Trolley Icon">
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
     <h2>My Account</h2>
-      <form>
-            <label for="CustomerID">CUSTOMER ID</label> <br>
-            <input type="number" id="CustomerID" name="CustomerID" readonly value="001">
-            <br><br>
+    <form>
 
-            <label for="name">NAME</label> <br>
-            <input type="text" id="FirstName" name="name" readonly value="Alia">
-            <input type="text" id="LastName" name="name" readonly value="Natasha">
-            <br><br>
+      <label for="name">NAME</label> <br>
+      <input type="text" id="name" name="name" readonly value="">
+      <br><br>
 
-            <label for="password">PASSWORD</label> <br>
-            <input type="password" id="password" name="password" readonly value="***">
-            <br><br>
-        
-            <label for="address">ADDRESS</label> <br>
-            <textarea id="address" name="address" readonly>28, Jalan Merlimau Jaya 5/1, Bandar Baru Merlimau, Melaka</textarea>
-            <br><br>
-        
-            <div class="form-buttons">
-                <a class="back" th:href="@{/homePage}">BACK</a>   
-                <input type="delete" value="DELETE">
-              </div>
+      <label for="email">EMAIL</label> <br>
+      <input type="text" id="email" name="email" readonly value="">
+      <br><br>
+
+      <label for="address">ADDRESS</label> <br>
+      <textarea id="address" name="address" readonly></textarea>
+      <br><br>
+
+      <label for="password">PASSWORD</label> <br>
+      <input type="password" id="password" name="password" readonly value="">
+      <br><br>
+
+      <div class="form-buttons">
+        <a class="back" th:href="@{/index}">BACK</a>
+
+        <input type="button" value="DELETE" onclick="deleteAccount()">
+        <input type="button" value="UPDATE" onclick="enableForm()">
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function deleteAccount() {
+      // Perform account deletion logic here
+      alert("Account deleted");
+    }
+
+    function enableForm() {
+      document.getElementById("name").readOnly = false;
+      document.getElementById("email").readOnly = false;
+      document.getElementById("address").readOnly = false;
+      document.getElementById("password").readOnly = false;
+    }
+  </script>
+
   </body>
 </html>

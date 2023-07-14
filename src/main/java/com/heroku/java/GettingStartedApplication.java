@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
@@ -28,10 +27,10 @@ public class GettingStartedApplication {
     }
     
 
-    @GetMapping("adminHomePage")
-    public String adminHomePage() {
-        return "adminHomePage";
-    }
+    //@GetMapping("adminHomePage")
+    //public String adminHomePage() {
+        //return "adminHomePage";
+    //}
 
     @GetMapping("indexAdmin")
     public String indexAdmin() {
@@ -63,10 +62,10 @@ public class GettingStartedApplication {
         return "updateAccAdmin";
     }
 
-    @GetMapping("viewAccAdmin")
-    public String viewAccAdmin() {
-        return "viewAccAdmin";
-    }
+    //@GetMapping("viewAccAdmin")
+   // public String viewAccAdmin() {
+//return "viewAccAdmin";
+    //}
 
     @GetMapping("createNewAcc")
     public String createNewAcc() {

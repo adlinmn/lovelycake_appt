@@ -224,17 +224,16 @@
       <div class="container">
       <h2>My Account - Admin</h2>
         <form>
-              <label for="AdminID">ADMIN ID</label> <br>
-              <input type="number" id="AdminID" name="AdminID" readonly value="202048">
+              <label for="id">ADMIN ID</label> <br>
+              <input type="id" id="id" name="id" readonly th:value="${viewAccAdmin.id}">
               <br><br>
   
-              <label for="name">NAME</label> <br>
-              <input type="text" id="FirstName" name="name" readonly value="Alia">
-              <input type="text" id="LastName" name="name" readonly value="Natasha">
+              <label for="name">EMAIL</label> <br>
+              <input type="email" id="email" name="email" readonly th:value="${viewAccAdmin.email}">
               <br><br>
   
               <label for="password">PASSWORD</label> <br>
-              <input type="password" id="password" name="password" readonly value="***">
+              <input type="password" id="password" name="password" readonly th:value="${viewAccAdmin.password}">
               <br><br>
           
               <div class="form-buttons">

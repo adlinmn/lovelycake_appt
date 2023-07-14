@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 @Controller
 public class AdminController {
     private final DataSource dataSource;
@@ -54,7 +55,7 @@ public class AdminController {
 
 
     @PostMapping("/adminlogin")
-public String adminHomePage(HttpSession session, @ModelAttribute("adminlogin") Admin admin, Model model) {
+public String adminlogin(HttpSession session, @ModelAttribute("adminlogin") Admin admin, Model model) {
     try (Connection connection = dataSource.getConnection()) {
         String sql = "SELECT id, email, password FROM admin WHERE id=? AND email=? AND password=?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -78,6 +79,68 @@ public String adminHomePage(HttpSession session, @ModelAttribute("adminlogin") A
         return "/adminlogin";
     }
 }
+
+@GetMapping("/adminHomePage")
+public String adminHomePage(HttpSession session, Model model) {
+    String id = (String) session.getAttribute("id");
+
+    if (id != null) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT id, email, password FROM admin WHERE id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String viewId = resultSet.getString("id");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+
+                Admin viewAccAdmin = new Admin(viewId, email, password);
+                model.addAttribute("viewAccAdmin", viewAccAdmin);
+                return "viewAccAdmin";
+            } else {
+                return "error";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return "error";
+}
+
+@GetMapping("viewAccAdmin")
+public String viewAccAdmin(Model model, HttpSession session) {
+    String email = (String) session.getAttribute("email");
+
+    if (email != null) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT id, email, password FROM admin WHERE email=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String viewId = resultSet.getString("id");
+                String viewEmail = resultSet.getString("email");
+                String password = resultSet.getString("password");
+
+                Admin viewAccAdmin = new Admin(viewId, viewEmail, password);
+                model.addAttribute("viewAccAdmin", viewAccAdmin);
+                return "viewAccAdmin";
+            } else {
+                return "error";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return "error";
+}
+
+
 
 
     @PostMapping("/viewAccAdmin")

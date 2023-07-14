@@ -37,7 +37,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder="Enter your password">
         <a th:href="@{/adminHomePage}" class="centered-button">
-          <input type="button" value="Login">
+          <input type="submit" value="Login">
         </a>
       </div>
       </form>
@@ -116,6 +116,19 @@
   }
   
   input[type="button"] {
+	background-color: #F6D8EF;
+	color: #060606;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 0 auto;
+	
+
+  }
+
+  input[type="submit"] {
 	background-color: #F6D8EF;
 	color: #060606;
 	border: none;
