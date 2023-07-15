@@ -69,12 +69,12 @@ public class CustomerController {
                 String password = resultSet.getString("password");
 
                 if (name.equals(customer.getName()) && email.equals(customer.getEmail()) && password.equals(customer.getPassword())) {
-                    session.setAttribute("name", customer.getName());
+                   session.setAttribute("name", customer.getName());
                     session.setAttribute("email", customer.getEmail());
-                    returnPage = "redirect:/homePage";
+                    returnPage = "redirect:/homelogin";
                     break;
                 } else {
-                    returnPage = "/userlogin";
+                    returnPage = "redirect:/userlogin";
                 }
             }
 
@@ -85,6 +85,42 @@ public class CustomerController {
             return "/userlogin";
         }
     }
+
+    @GetMapping("/homelogin")
+    public String homelogin(){
+        return "homelogin";
+    }
+
+
+    @GetMapping("/viewAccCust")
+    public String viewAccCustomer(HttpSession session, Model model) {
+    String email = (String) session.getAttribute("email");
+
+    if (email != null) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT name, address, email, password FROM customer WHERE email=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String password = resultSet.getString("password");
+
+                Customer viewAccCust = new Customer(name, address, email, password);
+                model.addAttribute("viewAccCust", viewAccCust);
+                return "viewAccCust";
+            } else {
+                return "error";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return "error";
+}
 
     @PostMapping("/viewAccCust")
     public String viewAccCust(HttpSession session, Model model) {
@@ -119,29 +155,33 @@ public class CustomerController {
     }
 
     @PostMapping("/updateAcc")
-    public String updateAcc(HttpSession session, @ModelAttribute("updateAcc") Customer customer, Model model) {
-        String password = customer.getPassword();
-        String name = customer.getName();
-        String email = customer.getEmail();
-        String address = customer.getAddress();
+public String updateAcc(HttpSession session, @ModelAttribute("updateAcc") Customer customer, Model model) {
+    try (Connection connection = dataSource.getConnection()) {
+        String sql = "UPDATE customer SET name=?, address=?, password=? WHERE email=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
 
-        try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE customer SET name=?, address=?, email=?, password=? WHERE email=?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, customer.getName());
+        statement.setString(2, customer.getAddress());
+        statement.setString(3, customer.getPassword());
+        statement.setString(4, (String) session.getAttribute("email"));
 
-            statement.setString(1, name);
-            statement.setString(2, address);
-            statement.setString(3, email);
-            statement.setString(4, password);
+        int rowsUpdated = statement.executeUpdate();
 
-            statement.executeUpdate();
-
-            return "viewAccCust";
-        } catch (Throwable t) {
-            t.printStackTrace();
-            return "/userlogin";
+        if (rowsUpdated > 0) {
+            // Update successful
+            return "redirect:/viewAccCust";
+        } else {
+            // Update failed
+            model.addAttribute("error", "Failed to update account");
+            return "error";
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        model.addAttribute("error", "Failed to update account");
+        return "error";
     }
+}
+
 
     @PostMapping("/deleteAccCust")
     public String deleteAccCust(HttpSession session, Model model) {

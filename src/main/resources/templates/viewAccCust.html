@@ -186,7 +186,21 @@
       color: #F8F7F6;
     }
 
-    input[type="delete"] {
+    input[type="submit"] {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  background-color: #CD2612;
+  color: #F8F7F6;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px; /* Adjust the width to your desired size */
+}
+
+input[type="delete"] {
   display: inline-block;
   font-size: 15px;
   font-weight: bold;
@@ -216,24 +230,6 @@
   
   <body>
     <header>
-      <div class="nav-container">
-        <div class="logo">
-          <h1>LOVELY CAKE BAKERY</h1>
-        </div>
-        <div class="nav-items">
-          <nav>
-            <ul>
-              <li><a th:href="@{/homePage}" style="color: black;">HOME</a></li>
-              <li><a href="#" style="color: black;">DESSERT MENU</a></li>
-            </ul>
-          </nav>
-          <div class="icons">
-            <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
-            <img src="img/trolley-icon.png" alt="Trolley Icon">
-          </div>
-        </div>
-      </div>
-    </header>
     <div class="nav-container">
       <div class="logo">
         <h1>LOVELY CAKE BAKERY</h1>
@@ -254,29 +250,27 @@
   </header>
   <div class="container">
     <h2>My Account</h2>
-    <form>
-
-      <label for="name">NAME</label> <br>
-      <input type="text" id="name" name="name" readonly value="">
+    
+    <form th:action="@{/updateAcc}" method="post" th:object="${viewAccCust}">
+      <!-- <input type="text" id="email" th:value="${viewAccCust.email}" readonly> -->
       <br><br>
-
-      <label for="email">EMAIL</label> <br>
-      <input type="text" id="email" name="email" readonly value="">
+      <label for="name">NAME</label> <br>
+      <input type="text" id="name" name="name" th:value="${viewAccCust.name}">
       <br><br>
 
       <label for="address">ADDRESS</label> <br>
-      <textarea id="address" name="address" readonly></textarea>
+      <input type="text" id="address" name="address" th:value="${viewAccCust.address}">
       <br><br>
 
       <label for="password">PASSWORD</label> <br>
-      <input type="password" id="password" name="password" readonly value="">
+      <input type="password" id="password" name="password" th:value="${viewAccCust.password}">
       <br><br>
 
       <div class="form-buttons">
         <a class="back" th:href="@{/index}">BACK</a>
 
-        <input type="button" value="DELETE" onclick="deleteAccount()">
-        <input type="button" value="UPDATE" onclick="enableForm()">
+        <input type="submit" value="UPDATE">
+        <input type="delete" value="DELETE">
       </div>
     </form>
   </div>

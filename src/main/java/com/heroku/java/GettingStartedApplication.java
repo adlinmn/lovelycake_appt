@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -21,31 +22,27 @@ public class GettingStartedApplication {
         this.dataSource = dataSource;
     }
 
-    @GetMapping("index")
+    @GetMapping("/")
+    public String homePage() {
+        return "homePage";
+    }
+    
+    @GetMapping("/index")
     public String index() {
         return "index";
     }
-    
 
     //@GetMapping("adminHomePage")
     //public String adminHomePage() {
         //return "adminHomePage";
     //}
 
-    @GetMapping("indexAdmin")
+    @GetMapping("/indexAdmin")
     public String indexAdmin() {
         return "indexAdmin";
     }
 
-    @GetMapping("userLogin")
-    public String userLogin() {
-        return "userLogin";
-    }
 
-    @GetMapping("homePage")
-    public String homePage() {
-        return "homePage";
-    }
 
     // @GetMapping("createAccCust")
     // public String createAccCust() {
@@ -72,12 +69,13 @@ public class GettingStartedApplication {
         return "createNewAcc";
     }
 
-    @GetMapping("userlogin")
+    @GetMapping("/userlogin")
     public String userlogin() {
         return "userlogin";
     }
 
-    @GetMapping("adminlogin")
+
+    @GetMapping("/adminlogin")
     public String adminlogin() {
         return "adminlogin";
     }
@@ -90,11 +88,6 @@ public class GettingStartedApplication {
     @GetMapping("updateAcc")
     public String updateAcc() {
         return "updateAcc";
-    }
-
-    @GetMapping("viewAccCust")
-    public String viewAccCust() {
-        return "viewAccCust";
     }
 
     @GetMapping("/database")

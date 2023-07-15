@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>View Account Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  </head>
-  <style>
-    body {
-      background-image: url(img/bg.png);
-      background-size: cover;
-    }
-    
-    header .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f8def3;
-      padding: 3px;
-    }
-    
-    header .nav-items {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
-    }
-    
-    header .nav-items nav ul {
-	display: flex;
-	list-style: none;
+<head>
+  <title>View Account Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<style>
+  body {
+    background-image: url('/img/bg.png');
+    background-size: cover;
   }
-    
-    header .nav-items nav ul li a {
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    
-    header .nav-items .icons {
-      display: flex;
-      align-items: center;
-      margin-left: 20px;
-    }
-    
-    header .nav-items .icons img {
-      height: 30px;
-      margin-left: 20px;
-    }
-    
-    .container {
+
+  header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8def3;
+    padding: 3px;
+  }
+
+  header .nav-items {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  header .nav-items nav ul {
+    display: flex;
+    list-style: none;
+  }
+
+  header .nav-items nav ul li a {
+    margin: 0 10px;
+    text-decoration: none;
+  }
+
+  header .nav-items .icons {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  header .nav-items .icons img {
+    height: 30px;
+    margin-left: 20px;
+  }
+
+  .container {
     position: relative;
   }
 
@@ -59,186 +59,314 @@
     flex: 0 0 auto;
     width: 100px; /* Adjust the width to your desired size */
   }
-    
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px;
-      background-color: #f6d8ef;
-      max-width: 800px;
-      margin: 0 auto;
-      opacity: 0.74;
-    }
-    
-    h2 {
-      text-align: center;
-      font-weight: bold;
-    }
-    
-    label {
-      margin: 0;
-      font-size: 20px;
-      margin-right: auto;
-    }
-    
-    #AdminID {
-      padding: 10px;
-      margin-bottom: 10px;
-      margin-right: auto;
-      border: 1px solid #000000;
-      border-radius: 5px;
-      font-size: 15px;
-    }
 
-    input[type="text"],
-    input[type="password"],
-    textarea {
-      padding: 10px;
-      margin-bottom: 10px;
-      margin-right: auto;
-      width: 80%;
-      border: 1px solid #000000;
-      border-radius: 5px;
-      font-size: 15px;
-    }
-    
-    .back {
-      display: inline-block;
-      padding: 10px 20px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 15px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      border: none;
-      background-color: #A8A2A2;
-      color: #F8F7F6;
-      cursor: pointer;
-      border-radius: 4px;
-      bottom: 0;
-      right: 0;
-    }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #f6d8ef;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.74;
+  }
 
-    input[type="delete"] {
-      display: inline-block;
-      font-size: 15px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      border: none;
-      background-color: #CD2612;
-      color: #F8F7F6;
-      cursor: pointer;
-      border-radius: 4px;
-      bottom: 0;
-      right: 0;
-    }
-    
-  
-    .popup-container {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fbd1e3;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-        z-index: 9999;
-      }
-  
-      .popup-message {
-        text-align: center;
-        font-size: 25px;
-        color: #000000;
-        margin-bottom: 20px;
-      }
-  
-      .popup-buttons {
-        text-align: center;
-      }
-  
-      .popup-buttons button {
-        margin: 0 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #C896BC;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-  
-      .popup-buttons button:hover {
-        background-color: #f8d7e3;
-        color: #000000;
-      }
-    
-    /* Updated styles */
-    header .nav-items nav ul li a {
-      color: black;
-    }
+  h2 {
+    text-align: center;
+    font-weight: bold;
+  }
 
-    .back {
-      margin-right: 10px;
-      background-color: #A8A2A2;
-      color: #F8F7F6;
-    }
+  label {
+    margin: 0;
+    font-size: 20px;
+    margin-right: auto;
+  }
 
-    input[type="delete"] {
-  display: inline-block;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  background-color: #CD2612;
-  color: #F8F7F6;
-  cursor: pointer;
-  border-radius: 4px;
-  width: 100px; /* Adjust the width to your desired size */
-}
-    
-  </style>
-  
-  <body>
-      <header>
-        <div class="nav-container">
-          <div class="logo">
-            <h1>LOVELY CAKE BAKERY</h1>
-          </div>
-          <div class="nav-items">
-            <nav>
-              <ul>
-                <li><a th:href="@{/adminHomePage}">HOME</a></li>
-                <li><a href="#">DESSERT MENU</a></li>
-              </ul>
-            </nav>
-            <div class="icons">
-              <a th:href="@{/indexAdmin}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
-            </div>
-          </div>
+  #AdminID {
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    width: 80%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+  input[type="update"] {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #1f7e37c5;
+    color: #F8F7F6;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100px; /* Adjust the width to your desired size */
+  }
+  .back {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #A8A2A2;
+    color: #F8F7F6;
+    cursor: pointer;
+    border-radius: 4px;
+    bottom: 0;
+    right: 0;
+  }
+
+  input[type="delete"] {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #CD2612;
+    color: #F8F7F6;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100px; /* Adjust the width to your desired size */
+  }
+
+  /* ... existing styles ... */
+
+  .popup{
+    width: 400px;
+    background: #FFF3FC;
+    border-radius: 6px;
+    position: absolute;
+    top:50% ; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+  }
+  .open-popup{
+    visibility: visible;
+  }
+  .popupSave{
+    width: 400px;
+    background: #FFF3FC;
+    border-radius: 6px;
+    position: absolute;
+    top:50% ; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+  }
+  .open-popupSave{
+    visibility: visible;
+  }
+  .popupDelete{
+    width: 400px;
+    background: #FFF3FC;
+    border-radius: 6px;
+    position: absolute;
+    top:50% ; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+  }
+  .open-popupDelete{
+    visibility: visible;
+  }
+  .popupDeleted{
+    width: 400px;
+    background: #FFF3FC;
+    border-radius: 6px;
+    position: absolute;
+    top:50% ; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+  }
+  .open-popupDeleted{
+    visibility: visible;
+  }
+  .popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+    color: #000000;
+  }
+  .popup p{
+    font-size: 20px;
+  }
+  .popup button{
+    width: 100%;
+    margin-top: 50px;
+    padding: 8px 0;
+    background: gray;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .popup .save{
+    width: 100%;
+    margin-top: 50px;
+    padding: 8px 0;
+    background: #1f7e37c5;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .popupDelete button{
+    width: 100%;
+    margin-top: 50px;
+    padding: 8px 0;
+    background: gray;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .popupDelete .yes{
+    width: 100%;
+    margin-top: 50px;
+    padding: 8px 0;
+    background: #1f7e37c5;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <h1>LOVELY CAKE BAKERY</h1>
+      </div>
+      <div class="nav-items">
+        <nav>
+          <ul>
+            <li><a th:href="@{/adminHomePage}">HOME</a></li>
+            <li><a href="#">DESSERT MENU</a></li>
+          </ul>
+        </nav>
+        <div class="icons">
+          <a th:href="@{/indexAdmin}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
         </div>
-      </header>
-      <div class="container">
-      <h2>My Account - Admin</h2>
-        <form>
-              <label for="id">ADMIN ID</label> <br>
-              <input type="id" id="id" name="id" readonly th:value="${viewAccAdmin.id}">
-              <br><br>
-  
-              <label for="name">EMAIL</label> <br>
-              <input type="email" id="email" name="email" readonly th:value="${viewAccAdmin.email}">
-              <br><br>
-  
-              <label for="password">PASSWORD</label> <br>
-              <input type="password" id="password" name="password" readonly th:value="${viewAccAdmin.password}">
-              <br><br>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <h2>My Account - Admin</h2>
+    <form>
+      <label for="AdminID">ADMIN ID</label> <br>
+      <input type="number" id="AdminID" name="AdminID" readonly value="">
+      <br><br>
+
+      <label for="name">NAME</label> <br>
+      <input type="text" id="FirstName" name="name" readonly value="">
+      <input type="text" id="LastName" name="name" readonly value="">
+      <br><br>
+
+      <label for="password">PASSWORD</label> <br>
+      <input type="password" id="password" name="password" readonly value="">
+      <br><br>
+
+      <div class="form-buttons">
+        <a class="back" th:href="@{/indexAdmin}">BACK</a>
+
+        <input type="delete" value="DELETE" onclick="openpopupfordelete()">
+          <div class="popupDelete" id="popup-delete">
+            <h3>Are you sure you want to delete the account?</h3>
+            <button type="button"onclick="openpopupDeleted()" class="yes">Yes</button> 
+               <div class="popupDeleted" id="popup-deleted">
+                <h2>Thank you!</h2>
+                <p>Your account is successfully deleted</p>
+                <button type="button" onclick="closepopupDeleted()">OK</button>
+               </div>
+            <button type="button" onclick="closepopupfordelete()" >No</button>
+          </div>
           
-              <div class="form-buttons">
-                  <a class="back" th:href="@{/indexAdmin}">BACK</a>    
-                  <input type="delete" value="DELETE">
-                </div>
-  </body>
+        <input type="update" value="UPDATE" onclick="openPopup()">
+        <div class="popup" id="popup">
+          <h3>Are you sure you want to save the changes?</h3>
+          <button type="button" class="save" onclick="openPopupSave()">Save</button>
+          <div class="popupSave" id="popup-save">
+            <h2>Thank You!</h2>
+            <p>Information is successfully updated</p>
+            <button type="button" onclick="closePopupSave()">OK</button>
+          </div>
+        <button type="button" onclick="closePopup()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    let popupDelete = document.getElementById("popup-delete");
+    function openpopupfordelete(){
+      popupDelete.classList.add("open-popupDelete")
+    }
+    function closepopupfordelete(){
+      popupDelete.classList.remove("open-popupDelete")
+    }
+
+    let popupDeleted =document.getElementById("popup-deleted");
+    function openpopupDeleted(){
+      popupDeleted.classList.add("open-popupDeleted")
+    }
+    function closepopupDeleted(){
+      popupDeleted.classList.remove("open-popupDeleted")
+      popupDelete.classList.remove("open-popupDelete")
+    }
+
+    let popup = document.getElementById("popup");
+    function openPopup(){
+      popup.classList.add("open-popup");
+    }
+    function closePopup(){
+      popup.classList.remove("open-popup");
+    }
+
+    let popupSave = document.getElementById("popup-save");
+    function openPopupSave(){
+      popupSave.classList.add("open-popupSave");
+    }
+    function closePopupSave(){
+      popupSave.classList.remove("open-popupSave");
+      popup.classList.remove("open-popup");
+    }
+  </script>
+</body>
+
 </html>
