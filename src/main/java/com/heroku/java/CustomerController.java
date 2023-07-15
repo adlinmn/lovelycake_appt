@@ -27,7 +27,7 @@ public class CustomerController {
     @PostMapping("/createAccCust")
     public String addAccount(HttpSession session, @ModelAttribute("createAccCust") Customer customer) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO customer (name, address, email, password) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO customer (custname, custaddress, custemail, custpassword) VALUES (?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, customer.getName());
@@ -57,20 +57,20 @@ public class CustomerController {
     @PostMapping("/userlogin")
     public String homePage(HttpSession session, @ModelAttribute("userlogin") Customer customer, Model model) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT name, email, password FROM customer";
+            String sql = "SELECT custname, custemail, custpassword FROM customer";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             String returnPage = "";
 
             while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
+                String custname = resultSet.getString("custname");
+                String custemail = resultSet.getString("custemail");
+                String custpassword = resultSet.getString("custpassword");
 
-                if (name.equals(customer.getName()) && email.equals(customer.getEmail()) && password.equals(customer.getPassword())) {
-                   session.setAttribute("name", customer.getName());
-                    session.setAttribute("email", customer.getEmail());
+                if (custname.equals(customer.getName()) && custemail.equals(customer.getEmail()) && custpassword.equals(customer.getPassword())) {
+                   session.setAttribute("custname", customer.getName());
+                    session.setAttribute("custemail", customer.getEmail());
                     returnPage = "redirect:/homelogin";
                     break;
                 } else {
@@ -94,21 +94,21 @@ public class CustomerController {
 
     @GetMapping("/viewAccCust")
     public String viewAccCustomer(HttpSession session, Model model) {
-    String email = (String) session.getAttribute("email");
+    String custemail = (String) session.getAttribute("custemail");
 
-    if (email != null) {
+    if (custemail != null) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT name, address, email, password FROM customer WHERE email=?";
+            String sql = "SELECT custname, custaddress, custemail, custpassword FROM customer WHERE custemail=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, email);
+            statement.setString(1, custemail);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String address = resultSet.getString("address");
-                String password = resultSet.getString("password");
+                String custname = resultSet.getString("custname");
+                String custaddress = resultSet.getString("custaddress");
+                String custpassword = resultSet.getString("custpassword");
 
-                Customer viewAccCust = new Customer(name, address, email, password);
+                Customer viewAccCust = new Customer(custname, custaddress, custemail, custpassword);
                 model.addAttribute("viewAccCust", viewAccCust);
                 return "viewAccCust";
             } else {
@@ -124,22 +124,22 @@ public class CustomerController {
 
     @PostMapping("/viewAccCust")
     public String viewAccCust(HttpSession session, Model model) {
-        String email = (String) session.getAttribute("email");
+        String custemail = (String) session.getAttribute("custemail");
 
-        if (email != null) {
+        if (custemail != null) {
             try (Connection connection = dataSource.getConnection()) {
-                String sql = "SELECT name, address, email, password FROM customer WHERE email=?";
+                String sql = "SELECT custname, custaddress, custemail, custpassword FROM customer WHERE custemail=?";
                 PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, email);
+                statement.setString(1, custemail);
                 ResultSet resultSet = statement.executeQuery();
 
                 if (resultSet.next()) {
-                    String name = resultSet.getString("name");
-                    String address = resultSet.getString("address");
-                    String password = resultSet.getString("password");
+                    String custname = resultSet.getString("custname");
+                    String custaddress = resultSet.getString("custaddress");
+                    String custpassword = resultSet.getString("custpassword");
 
-                    System.out.println("name from db: " + name);
-                    Customer viewAccCust = new Customer(name, address, email, password);
+                    System.out.println("name from db: " + custname);
+                    Customer viewAccCust = new Customer(custname, custaddress, custemail, custpassword);
                     model.addAttribute("viewAccCust", viewAccCust);
                     System.out.println("Session viewAccCust: " + model.getAttribute("viewAccCust"));
                     return "viewAccCust";
@@ -156,14 +156,15 @@ public class CustomerController {
 
     @PostMapping("/updateAcc")
 public String updateAcc(HttpSession session, @ModelAttribute("updateAcc") Customer customer, Model model) {
+
     try (Connection connection = dataSource.getConnection()) {
-        String sql = "UPDATE customer SET name=?, address=?, password=? WHERE email=?";
+        String sql = "UPDATE customer SET custname=?, custaddress=?, custpassword=? WHERE custemail=?";
         PreparedStatement statement = connection.prepareStatement(sql);
 
         statement.setString(1, customer.getName());
         statement.setString(2, customer.getAddress());
         statement.setString(3, customer.getPassword());
-        statement.setString(4, (String) session.getAttribute("email"));
+        statement.setString(4, (String) session.getAttribute("custemail"));
 
         int rowsUpdated = statement.executeUpdate();
 
@@ -183,30 +184,28 @@ public String updateAcc(HttpSession session, @ModelAttribute("updateAcc") Custom
 }
 
 
-    @PostMapping("/deleteAccCust")
-    public String deleteAccCust(HttpSession session, Model model) {
-        String email = (String) session.getAttribute("email");
+    
+@PostMapping("/deleteAccCust")
+public String deleteAccCust(HttpSession session, Model model) {
+    String custemail = (String) session.getAttribute("custemail");
 
-        if (email != null) {
-            try (Connection connection = dataSource.getConnection()) {
-                String sql = "DELETE FROM customer WHERE email=?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, email);
+    if (custemail != null) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM customer WHERE custemail=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, custemail);
 
-                int rowsAffected = statement.executeUpdate();
+            statement.executeUpdate(); // Use executeUpdate() instead of executeQuery()
 
-                if (rowsAffected > 0) {
-                    session.invalidate();
-                    return "redirect:/userlogin";
-                } else {
-                    System.out.println("Delete failed");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return "deleteError";
-            }
+            // Redirect to a success page or perform any necessary actions
+            return "redirect:/userlogin";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "deleteError";
         }
-
-        return "deleteError";
     }
+
+    return "deleteError";
 }
+}
+

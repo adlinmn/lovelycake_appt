@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>View Cart</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    /* Add your additional styles here */
+    body {
+      background-image: url(img/bg.png);
+      background-size: cover;
+    }
+    
+    header .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    
+    header .nav-items {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    
+    header .nav-items nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    header .nav-items nav ul li a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    header .nav-items .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+    
+    header .nav-items .icons img {
+      height: 30px;
+      margin-left: 20px;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #000000;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+    .cart-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .cart-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .cart-item span {
+      font-size: 18px;
+      color: #000000;
+    }
+    .cart-item i {
+      color: #ff0000;
+      cursor: pointer;
+    }
+    .checkout-button {
+      background-color: #ffc0cb;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      float: right;
+    }
+    .total-price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="logo">
+      <h1>LOVELY CAKE BAKERY</h1>
+    </div>
+    <div class="nav-items">
+      <nav>
+        <ul>
+          <li><a th:href="@{/homePage}">HOME</a></li>
+          <li><a th:href="@{/homePage}">DESSERT MENU</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+        <img src="img/trolley-icon.png" alt="Trolley Icon">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <form id="checkoutForm" th:action="@{/makePayment}" method="post">
+    <div id="cartItems"></div>
+
+    <button type="submit" class="checkout-button">Checkout</button>
+  </form>
+
+  <div class="total-price">
+    Total Price: <span id="totalPrice">RM 0.00</span>
+  </div>
+</div>
+
+<script>
+  const cartItemsContainer = document.getElementById('cartItems');
+  const totalPriceElement = document.getElementById('totalPrice');
+  const cancelOrderButton = document.getElementById('cancelOrderButton');
+
+  // Retrieve cart items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  // Function to render the cart items
+  function renderCartItems() {
+    cartItemsContainer.innerHTML = ''; // Clear existing cart items
+
+    cartItems.forEach(item => {
+      const cartItem = document.createElement('div');
+      cartItem.classList.add('cart-item');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.name = 'cartItem';
+      checkbox.value = item.name;
+      checkbox.addEventListener('change', () => {
+        updateTotalPrice();
+      });
+      cartItem.appendChild(checkbox);
+
+      const span = document.createElement('span');
+      span.textContent = `${item.name} - RM ${parseFloat(item.price.slice(2)).toFixed(2)}`;
+      cartItem.appendChild(span);
+
+      const deleteIcon = document.createElement('i');
+      deleteIcon.classList.add('fas', 'fa-trash-alt');
+      deleteIcon.addEventListener('click', () => {
+        removeCartItem(item);
+      });
+      cartItem.appendChild(deleteIcon);
+
+      cartItemsContainer.appendChild(cartItem);
+    });
+
+    // Calculate and display the total price
+    updateTotalPrice();
+  }
+
+  function updateTotalPrice() {
+    const totalPrice = cartItems.reduce((total, item) => {
+      const checkbox = document.querySelector(`input[name="cartItem"][value="${item.name}"]`);
+      if (checkbox.checked) {
+        return total + parseFloat(item.price.slice(2));
+      }
+      return total;
+    }, 0);
+    totalPriceElement.textContent = `RM ${totalPrice.toFixed(2)}`;
+  }
+
+  renderCartItems();
+
+  function removeCartItem(item) {
+    const itemIndex = cartItems.findIndex(cartItem => cartItem.name === item.name);
+    if (itemIndex !== -1) {
+      cartItems.splice(itemIndex, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      renderCartItems();
+    }
+  }
+
+  const checkoutForm = document.getElementById('checkoutForm');
+
+  checkoutForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    console.log('Checkout button clicked');
+    localStorage.setItem('checkoutClicked', 'true');
+    this.submit();
+  });
+
+  // Check if checkout button was clicked previously
+  const checkoutClicked = localStorage.getItem('checkoutClicked');
+  if (checkoutClicked === 'true') {
+    cancelOrderButton.style.display = 'inline-block';
+  }
+</script>
+</body>
+</html>

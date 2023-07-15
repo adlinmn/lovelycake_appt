@@ -102,7 +102,7 @@
     border-radius: 5px;
     font-size: 15px;
   }
-  input[type="update"] {
+  input[type="submit"] {
     display: inline-block;
     font-size: 15px;
     font-weight: bold;
@@ -115,6 +115,21 @@
     border-radius: 4px;
     width: 100px; /* Adjust the width to your desired size */
   }
+
+  button[type="submit"] {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  background-color: #CD2612;
+  color: #F8F7F6;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px; /* Adjust the width to your desired size */
+}
+
   .back {
     display: inline-block;
     padding: 10px 20px;
@@ -288,85 +303,27 @@
   </header>
   <div class="container">
     <h2>My Account - Admin</h2>
-    <form>
-      <label for="AdminID">ADMIN ID</label> <br>
-      <input type="number" id="AdminID" name="AdminID" readonly value="">
+    <form th:action="@{/updateAccAdmin}" method="post" th:object="${viewAccAdmin}">
+    <!--<label for="AdminID">ADMIN ID</label> <br> -->
+      <!--<input type="number" id="AdminID" name="AdminID" readonly value=""> -->
       <br><br>
 
-      <label for="name">NAME</label> <br>
-      <input type="text" id="FirstName" name="name" readonly value="">
-      <input type="text" id="LastName" name="name" readonly value="">
+      <label for="email">EMAIL</label> <br>
+      <input type="text" id="email" name="email" th:value="${viewAccAdmin.email}">
       <br><br>
 
       <label for="password">PASSWORD</label> <br>
-      <input type="password" id="password" name="password" readonly value="">
+      <input type="password" id="password" name="password" th:value="${viewAccAdmin.password}">
       <br><br>
 
       <div class="form-buttons">
         <a class="back" th:href="@{/indexAdmin}">BACK</a>
 
-        <input type="delete" value="DELETE" onclick="openpopupfordelete()">
-          <div class="popupDelete" id="popup-delete">
-            <h3>Are you sure you want to delete the account?</h3>
-            <button type="button"onclick="openpopupDeleted()" class="yes">Yes</button> 
-               <div class="popupDeleted" id="popup-deleted">
-                <h2>Thank you!</h2>
-                <p>Your account is successfully deleted</p>
-                <button type="button" onclick="closepopupDeleted()">OK</button>
-               </div>
-            <button type="button" onclick="closepopupfordelete()" >No</button>
-          </div>
-          
-        <input type="update" value="UPDATE" onclick="openPopup()">
-        <div class="popup" id="popup">
-          <h3>Are you sure you want to save the changes?</h3>
-          <button type="button" class="save" onclick="openPopupSave()">Save</button>
-          <div class="popupSave" id="popup-save">
-            <h2>Thank You!</h2>
-            <p>Information is successfully updated</p>
-            <button type="button" onclick="closePopupSave()">OK</button>
-          </div>
-        <button type="button" onclick="closePopup()">Cancel</button>
-        </div>
+        <input type="submit" value="UPDATE">
+        <button type="submit" class="delete" th:formaction="@{/deleteAccAdmin}">DELETE</button>
       </div>
     </form>
-  </div>
-
-  <script>
-    let popupDelete = document.getElementById("popup-delete");
-    function openpopupfordelete(){
-      popupDelete.classList.add("open-popupDelete")
-    }
-    function closepopupfordelete(){
-      popupDelete.classList.remove("open-popupDelete")
-    }
-
-    let popupDeleted =document.getElementById("popup-deleted");
-    function openpopupDeleted(){
-      popupDeleted.classList.add("open-popupDeleted")
-    }
-    function closepopupDeleted(){
-      popupDeleted.classList.remove("open-popupDeleted")
-      popupDelete.classList.remove("open-popupDelete")
-    }
-
-    let popup = document.getElementById("popup");
-    function openPopup(){
-      popup.classList.add("open-popup");
-    }
-    function closePopup(){
-      popup.classList.remove("open-popup");
-    }
-
-    let popupSave = document.getElementById("popup-save");
-    function openPopupSave(){
-      popupSave.classList.add("open-popupSave");
-    }
-    function closePopupSave(){
-      popupSave.classList.remove("open-popupSave");
-      popup.classList.remove("open-popup");
-    }
-  </script>
+    </div>
 </body>
 
 </html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Pastry Menu</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    /* Add your additional styles here */
+    body {
+      background-image: url(img/bg.png);
+      background-size: cover;
+    }
+    
+    header .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    
+    header .nav-items {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    
+    header .nav-items nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    header .nav-items nav ul li a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    header .nav-items .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+    
+    header .nav-items .icons img {
+      height: 30px;
+      margin-left: 20px;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #000000;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+    .menu-item {
+      border-radius: 10px;
+      border: 2px solid #ffc0cb;
+      background-color: #ffffff;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .menu-item img {
+      width: 70%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .menu-item h3 {
+      margin: 0;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+    .menu-item p {
+      margin: 0;
+      color: #000000;
+    }
+    .menu-item .add-to-cart-button {
+      background-color: #ffc0cb;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .menu-item .price {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="logo">
+      <h1>LOVELY CAKE BAKERY</h1>
+    </div>
+    <div class="nav-items">
+      <nav>
+        <ul>
+          <li><a th:href="@{/homePage}">HOME</a></li>
+          <li><a href="#">DESSERT MENU</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+        <a th:href="@{/custViewCart}" id="trolleyIcon"><img src="img/trolley-icon.png" alt="Trolley Icon"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="menu-items"></div>
+
+<script>
+  // Sample menu data for pastries
+  const pastryMenu = [
+    {
+      id: 7,
+      image: 'img/pastry1.png',
+      name: 'Croissant',
+      description: 'Flaky and buttery croissant',
+      price: 'RM7.00'
+    },
+    {
+      id: 8,
+      image: 'img/pastry2.png',
+      name: 'Puff pastry',
+      description: 'Very delicate and rich pastry',
+      price: 'RM6.00'
+    },
+    {
+      id: 9,
+      image: 'img/pastry3.png',
+      name: 'Profiteroles',
+      description: 'Small puffed hollow pastry round',
+      price: 'RM2.50'
+    },
+    {
+      id: 10,
+      image: 'img/pastry4.png',
+      name: 'Macaroon',
+      description: 'sweet, small, round French sandwich cookie',
+      price: 'RM3.00'
+    },
+    {
+      id: 11,
+      image: 'img/pastry5.png',
+      name: 'Mini Apple pie',
+      description: 'fruit pie in which the principal filling ingredient is apples',
+      price: 'RM4.00'
+    },
+    {
+      id: 12,
+      image: 'img/pastry6.png',
+      name: 'Cannoli',
+      description: 'fried pastry dough stuffed with a sweet, creamy cheese filling',
+      price: 'RM3.00'
+    },
+    // Add more pastry menu items here
+  ];
+
+  function generateMenuItems(menuItems) {
+    const menuContainer = document.querySelector('.menu-items');
+    menuContainer.innerHTML = ''; // Clear existing menu items
+
+    menuItems.forEach(item => {
+      const menuItem = document.createElement('div');
+      menuItem.classList.add('menu-item');
+
+      const image = document.createElement('img');
+      image.src = item.image;
+      image.alt = item.name;
+      menuItem.appendChild(image);
+
+      const name = document.createElement('h3');
+      name.textContent = item.name;
+      menuItem.appendChild(name);
+
+      const description = document.createElement('p');
+      description.textContent = item.description;
+      menuItem.appendChild(description);
+
+      const price = document.createElement('p');
+      price.classList.add('price');
+      price.textContent = item.price;
+      menuItem.appendChild(price);
+
+      const addToCartButton = document.createElement('button');
+      addToCartButton.classList.add('add-to-cart-button');
+      addToCartButton.textContent = 'Add to Cart';
+      menuItem.appendChild(addToCartButton);
+
+      menuContainer.appendChild(menuItem);
+
+      // Add event listener for add to cart button
+      addToCartButton.addEventListener('click', () => {
+        // Perform add to cart operation
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        document.getElementById('feedbackMessage').textContent = 'Successfully added to cart';
+        console.log('Add to cart clicked for menu item:', item.id);
+      });
+    });
+  }
+
+  generateMenuItems(pastryMenu);
+</script>
+</body>
+</html>

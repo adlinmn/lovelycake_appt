@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer - View Order</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<style>
+  /* ... CSS styles omitted for brevity ... */
+  body {
+      background-image: url(img/bg.png);
+      background-size: cover;
+    }
+    
+    header .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    
+    header .nav-items {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    
+    header .nav-items nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    header .nav-items nav ul li a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    header .nav-items .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+    
+    header .nav-items .icons img {
+      height: 30px;
+      margin-left: 20px;
+    }
+    
+  header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8def3;
+    padding: 3px; 
+  }
+
+  header .nav-items {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  header .nav-items nav ul {
+    display: flex;
+    list-style: none;
+  }
+
+  header .nav-items nav ul li {
+    margin: 0 10px;
+  }
+
+  header .nav-items .icons {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  header .nav-items .icons img {
+    height: 30px;
+    margin-left: 20px;
+  }
+
+  a {
+    color: #141414;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  body {
+    background-image: url('img/bg.jpeg');
+    background-size: cover;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px); /* Subtracting header height */
+    padding-top: 20px;
+  }
+
+  .receipt {
+    width: 400px;
+    background-color: #ffffff;
+    border: 5px solid #000000;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .receipt-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .receipt-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .receipt-details .left {
+    font-weight: bold;
+  }
+
+  .receipt-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .receipt-total .left {
+    font-weight: bold;
+  }
+</style>
+
+<body>
+  <header>
+    <!-- ... Header code omitted for brevity ... -->
+    <div class="nav-container">
+      <div class="logo">
+        <h1>LOVELY CAKE BAKERY</h1>
+      </div>
+      <div class="nav-items">
+        <nav>
+          <ul>
+            <li><a th:href="@{/customerHomePage}">HOME</a></li>
+            <li><a th:href="@{/}">DESSERT MENU</a></li>
+          </ul>
+        </nav>
+        <div class="icons">
+          <img src="img/profile-icon.png" alt="Profile Icon">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="receipt">
+      <h2 class="receipt-title">Order Receipt</h2>
+      <div class="receipt-details">
+        <div class="left">Product:</div>
+        <div class="right" id="product"></div>
+      </div>
+      <div class="receipt-details">
+        <div class="left">Price:</div>
+        <div class="right" id="price"></div>
+      </div>
+      <div class="receipt-details">
+        <div class="left">Order Status:</div>
+        <div class="right" id="orderStatus"></div>
+      </div>
+      <div class="receipt-details">
+        <div class="left">Order Date:</div>
+        <div class="right" id="orderDate"></div>
+      </div>
+      <div class="receipt-total">
+        <div class="left">Total Price:</div>
+        <div class="right" id="totalPrice"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get the query parameters from the URL
+    var queryParams = new URLSearchParams(window.location.search);
+    var product = queryParams.get("product");
+    var price = queryParams.get("price");
+    var orderStatus = queryParams.get("orderStatus");
+    var orderDate = queryParams.get("orderDate");
+
+    // Populate the receipt with the query parameter values
+    document.getElementById("product").textContent = product;
+    document.getElementById("price").textContent = price;
+    document.getElementById("orderStatus").textContent = orderStatus;
+    document.getElementById("orderDate").textContent = orderDate;
+    document.getElementById("totalPrice").textContent = price; // You can calculate the total price if needed
+  </script>
+</body>
+</html>

@@ -193,7 +193,7 @@
   text-align: center;
   text-decoration: none;
   border: none;
-  background-color: #CD2612;
+  background-color: #1f7e37c5;
   color: #F8F7F6;
   cursor: pointer;
   border-radius: 4px;
@@ -201,6 +201,20 @@
 }
 
 input[type="delete"] {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  background-color: #CD2612;
+  color: #F8F7F6;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px; /* Adjust the width to your desired size */
+}
+
+button[type="submit"] {
   display: inline-block;
   font-size: 15px;
   font-weight: bold;
@@ -284,7 +298,7 @@ input[type="button"] {
         <a class="back" th:href="@{/index}">BACK</a>
 
         <input type="submit" value="UPDATE">
-        <input type="delete" value="DELETE">
+        <button type="submit" class="delete" th:formaction="@{/deleteAccCust}">DELETE</button>
       </div>
     </form>
   </div>

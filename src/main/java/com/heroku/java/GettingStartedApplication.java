@@ -90,6 +90,67 @@ public class GettingStartedApplication {
         return "updateAcc";
     }
 
+    //@GetMapping("createMenu")
+    //public String createMenu() {
+       // return "createMenu";
+    //}
+
+    @GetMapping("viewMenuAdmin")
+    public String viewMenuAdmin() {
+        return "viewMenuAdmin";
+    }
+
+    @GetMapping("adminQR")
+    public String adminQR() {
+        return "adminQR";
+    }
+
+    @GetMapping("AdminViewOrder")
+    public String AdminViewOrder() {
+        return "AdminViewOrder";
+    }
+
+    @GetMapping("cake")
+    public String cake() {
+        return "cake";
+    }
+
+    @GetMapping("createQR")
+    public String createQR() {
+        return "createQR";
+    }
+
+    @GetMapping("cupcake")
+    public String cupcake() {
+        return "cupcake";
+    }
+
+    @GetMapping("custPayment")
+    public String custPayment() {
+        return "custPayment";
+    }
+
+    @GetMapping("custViewCart")
+    public String custViewCart() {
+        return "custViewCart";
+    }
+
+    @GetMapping("custViewOrder")
+    public String custViewOrder() {
+        return "custViewOrder";
+    }
+
+    @GetMapping("pastry")
+    public String pastry() {
+        return "pastry";
+    }
+
+    @GetMapping("makePayment")
+    public String makePayment() {
+        return "makePayment";
+    }
+
+
     @GetMapping("/database")
     String database(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {

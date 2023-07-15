@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Cake Menu</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    /* Add your additional styles here */
+    body {
+      background-image: url(img/bg.png);
+      background-size: cover;
+    }
+    
+    header .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    
+    header .nav-items {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    
+    header .nav-items nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    header .nav-items nav ul li a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    header .nav-items .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+    
+    header .nav-items .icons img {
+      height: 30px;
+      margin-left: 20px;
+    }
+    
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #f8def3;
+      padding: 3px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #000000;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+    .menu-item {
+      border-radius: 10px;
+      border: 2px solid #ffc0cb;
+      background-color: #ffffff;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .menu-item img {
+      width: 70%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .menu-item h3 {
+      margin: 0;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+    .menu-item p {
+      margin: 0;
+      color: #000000;
+    }
+    .menu-item .add-to-cart-button {
+      background-color: #ffc0cb;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .feedback-message {
+      text-align: center;
+      color: #ff0000;
+      margin-top: 10px;
+    }
+    
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="logo">
+      <h1>LOVELY CAKE BAKERY</h1>
+    </div>
+    <div class="nav-items">
+      <nav>
+        <ul>
+          <li><a th:href="@{/homePage}">HOME</a></li>
+          <li><a th:href="@{/viewMenu}">DESSERT MENU</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+        <a th:href="@{/custViewCart}" id="trolleyIcon"><img src="img/trolley-icon.png" alt="Trolley Icon"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="menu-items"></div>
+<div class="feedback-message" id="feedbackMessage"></div>
+
+<script>
+  // Sample menu data for cakes
+  const cakeMenu = [
+    {
+      id: 1,
+      image: 'img/cake1.png',
+      name: 'Strawberry Cheesecake',
+      description: 'Delicious cheesecake with fresh strawberries',
+      price: 'RM40.00'
+    },
+    {
+      id: 2,
+      image: 'img/cake2.png',
+      name: 'Chocolate Fudge Cake',
+      description: 'Rich taste and decadent chocolate fudge cake ever',
+      price: 'RM40.00'
+    },
+    {
+      id: 3,
+      image: 'img/cake3.png',
+      name: 'Rainbow Crepe Cake',
+      description: 'The impressive-looking rainbow crepe cake',
+      price: 'RM35.00'
+    },
+    {
+      id: 4,
+      image: 'img/cake4.png',
+      name: 'Red Velvet Cake',
+      description: 'Delicious cake covered with sweet cream cheese frosting.',
+      price: 'RM40.00'
+    },
+    {
+      id: 5,
+      image: 'img/cake5.png',
+      name: 'Mint Chocolate Chip Cake',
+      description: ' A festive combination of decadent chocolate, sweet mint, and a beautiful mint green',
+      price: 'RM35.00'
+    },
+    {
+      id: 6,
+      image: 'img/cake6.png',
+      name: 'Oreo Ice Cream Cake',
+      description: 'The layers of hot fudge, cool whip and crushed Oreo',
+      price: 'RM35.00'
+    },
+    // Add more cake menu items here
+  ];
+
+  function generateMenuItems(menuItems) {
+    const menuContainer = document.querySelector('.menu-items');
+    menuContainer.innerHTML = ''; // Clear existing menu items
+
+    menuItems.forEach(item => {
+      const menuItem = document.createElement('div');
+      menuItem.classList.add('menu-item');
+
+      const image = document.createElement('img');
+      image.src = item.image;
+      image.alt = item.name;
+      menuItem.appendChild(image);
+
+      const name = document.createElement('h3');
+      name.textContent = item.name;
+      menuItem.appendChild(name);
+
+      const description = document.createElement('p');
+      description.textContent = item.description;
+      menuItem.appendChild(description);
+
+      const price = document.createElement('p');
+      price.textContent = item.price;
+      menuItem.appendChild(price);
+
+      const addToCartButton = document.createElement('button');
+      addToCartButton.classList.add('add-to-cart-button');
+      addToCartButton.textContent = 'Add to Cart';
+      menuItem.appendChild(addToCartButton);
+
+      menuContainer.appendChild(menuItem);
+
+      // Add event listener for add to cart button
+      addToCartButton.addEventListener('click', () => {
+        // Perform add to cart operation
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        document.getElementById('feedbackMessage').textContent = 'Successfully added to cart';
+        console.log('Add to cart clicked for menu item:', item.id);
+      });
+    });
+  }
+
+  generateMenuItems(cakeMenu);
+</script>
+</body>
+</html>

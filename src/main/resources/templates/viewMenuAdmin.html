@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>View Menu Admin</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    /* Add your additional styles here */
+    body {
+      background-image: url('/img/bg.png');
+      background-size: cover;
+    }
+
+    header .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8def3;
+      padding: 3px;
+    }
+
+    header .nav-items {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    header .nav-items nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    header .nav-items nav ul li a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    header .nav-items .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    header .nav-items .icons img {
+      height: 30px;
+      margin-left: 20px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #f8def3;
+      padding: 3px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #000000;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+
+    .menu-item {
+      border-radius: 10px;
+      border: 2px solid #ffc0cb;
+      background-color: #ffffff;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .menu-item img {
+      width: 70%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .menu-item h3 {
+      margin: 0;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+
+    .menu-item p {
+      margin: 0;
+      color: #000000;
+    }
+
+    .menu-item .price {
+      margin-bottom: 10px;
+    }
+
+    .menu-item .edit-icon,
+    .menu-item .delete-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #ff0000;
+      cursor: pointer;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .form-container {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+    }
+
+    .form-container h2 {
+      margin-top: 0;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="number"],
+    .form-container textarea {
+      width: 100%;
+      padding: 5px;
+    }
+
+    .form-container button {
+      background-color: #ffc0cb;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="logo">
+      <h1>LOVELY CAKE BAKERY</h1>
+    </div>
+    <div class="nav-items">
+      <nav>
+        <ul>
+          <li><a th:href="@{/loginHomeAdmin}">HOME</a></li>
+          <li><a th:href="@{/viewMenuAdmin}">DESSERT MENU</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="menu-items">
+  <div th:each="menu : ${menus}" class="menu-item">
+    <img th:src="${menu.image}" alt="Menu Image">
+    <h3 th:text="${menu.name}"></h3>
+    <p th:text="${menu.description}"></p>
+    <p class="price" th:text="${menu.price}"></p>
+    <button class="edit-button" th:onclick="'editMenu(\'' + ${menu.id} + '\')'">Edit</button>
+    <button class="delete-button" th:onclick="'deleteMenu(\'' + ${menu.id} + '\')'">Delete</button>
+  </div>
+</div>
+
+<div class="form-popup" id="editForm">
+  <div class="form-container">
+    <h2>Edit Menu Item</h2>
+    <label for="editID">ID:</label>
+    <input type="number" id="editID" name="editID">
+    <label for="editName">Name:</label>
+    <input type="text" id="editName" name="editName">
+    <label for="editDescription">Description:</label>
+    <textarea id="editDescription" name="editDescription"></textarea>
+    <label for="editPrice">Price:</label>
+    <input type="text" id="editPrice" name="editPrice">
+    <button type="button" id="editSubmit">Save</button>
+    <button type="button" id="editCancel">Cancel</button>
+  </div>
+</div>
+
+<script>
+  // Retrieve menu items from the server-side database
+  const menus = /*[[${menus}]]*/ [];
+
+  function generateMenuItems(menus) {
+    const menuContainer = document.querySelector('.menu-items');
+    menuContainer.innerHTML = ''; // Clear existing menu items
+
+    menus.forEach(menu => {
+      const menuItem = document.createElement('div');
+      menuItem.classList.add('menu-item');
+
+      const image = document.createElement('img');
+      image.src = menu.image;
+      image.alt = menu.name;
+      menuItem.appendChild(image);
+
+      const name = document.createElement('h3');
+      name.textContent = menu.name;
+      menuItem.appendChild(name);
+
+      const description = document.createElement('p');
+      description.textContent = menu.description;
+      menuItem.appendChild(description);
+
+      const price = document.createElement('p');
+      price.classList.add('price');
+      price.textContent = menu.price;
+      menuItem.appendChild(price);
+
+      const editButton = document.createElement('button');
+      editButton.classList.add('edit-button');
+      editButton.textContent = 'Edit';
+      menuItem.appendChild(editButton);
+
+      const deleteButton = document.createElement('button');
+      deleteButton.classList.add('delete-button');
+      deleteButton.textContent = 'Delete';
+      menuItem.appendChild(deleteButton);
+
+      menuContainer.appendChild(menuItem);
+
+      // Add event listener for edit button
+      editButton.addEventListener('click', () => {
+        // Display the edit form with pre-filled values
+        document.getElementById('editID').value = menu.id;
+        document.getElementById('editName').value = menu.name;
+        document.getElementById('editDescription').value = menu.description;
+        document.getElementById('editPrice').value = menu.price;
+        document.getElementById('editForm').style.display = 'block';
+      });
+
+      // Add event listener for delete button
+      deleteButton.addEventListener('click', () => {
+        // Remove the menu item from the database
+        fetch(`/deleteMenu?id=${menu.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(() => {
+            // Update the menu items on the page
+            generateMenuItems(menus);
+          })
+          .catch(error => {
+            console.error('Error deleting menu item:', error);
+          });
+      });
+    });
+  }
+
+  generateMenuItems(menus);
+
+  // Event listener for edit form submit button
+  document.getElementById('editSubmit').addEventListener('click', () => {
+    // Get the updated values from the form
+    const updatedID = parseInt(document.getElementById('editID').value);
+    const updatedName = document.getElementById('editName').value;
+    const updatedDescription = document.getElementById('editDescription').value;
+    const updatedPrice = document.getElementById('editPrice').value;
+
+    // Update the menu item in the database
+    fetch(`/updateMenu`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: updatedID,
+        name: updatedName,
+        description: updatedDescription,
+        price: updatedPrice,
+      }),
+    })
+      .then(() => {
+        // Update the menu items on the page
+        generateMenuItems(menus);
+        // Hide the edit form
+        document.getElementById('editForm').style.display = 'none';
+      })
+      .catch(error => {
+        console.error('Error updating menu item:', error);
+      });
+  });
+
+  // Event listener for edit form cancel button
+  document.getElementById('editCancel').addEventListener('click', () => {
+    // Hide the edit form
+    document.getElementById('editForm').style.display = 'none';
+  });
+
+  function editMenu(menuId) {
+    // Retrieve menu item data based on menuId and populate the edit form
+    fetch(`/getMenu?id=${menuId}`)
+      .then(response => response.json())
+      .then(menu => {
+        document.getElementById('editID').value = menu.id;
+        document.getElementById('editName').value = menu.name;
+        document.getElementById('editDescription').value = menu.description;
+        document.getElementById('editPrice').value = menu.price;
+        document.getElementById('editForm').style.display = 'block';
+      })
+      .catch(error => {
+        console.error('Error retrieving menu item:', error);
+      });
+  }
+
+  function deleteMenu(menuId) {
+    // Remove the menu item from the database
+    fetch(`/deleteMenu?id=${menuId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        // Update the menu items on the page
+        generateMenuItems(menus);
+      })
+      .catch(error => {
+        console.error('Error deleting menu item:', error);
+      });
+  }
+</script>
+</body>
+</html>
+
