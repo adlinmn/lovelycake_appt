@@ -51,13 +51,13 @@
 
   .container .form-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Add this line to distribute buttons evenly */
     margin-top: 20px;
   }
 
-  .container .form-buttons button {
-    flex: 0 0 auto;
-    width: 100px; /* Adjust the width to your desired size */
+  .container .form-buttons input[type="submit"],
+  .container .form-buttons input[type="button"] {
+    width: auto; /* Adjust the width to fit the button content */
   }
     
     form {
@@ -201,6 +201,20 @@
 }
 
 input[type="delete"] {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  background-color: #CD2612;
+  color: #F8F7F6;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px; /* Adjust the width to your desired size */
+}
+
+input[type="button"] {
   display: inline-block;
   font-size: 15px;
   font-weight: bold;
