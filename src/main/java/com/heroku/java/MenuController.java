@@ -237,4 +237,21 @@ public String displayCupcakeMenu(Model model) {
     }
 }
 
+@GetMapping("/viewCustCart")
+@SuppressWarnings("unchecked")
+public String viewCustCart(HttpSession session, Model model) {
+    ArrayList<Menu> cartItems = (ArrayList<Menu>) session.getAttribute("cartItems");
+    model.addAttribute("cartItems", cartItems);
+    return "custViewCart";
+}
+
+@PostMapping("/viewCustCart")
+public String addToCart(HttpSession session, @RequestParam("menuId") String menuId) {
+    // Retrieve the selected menu item using the menuId
+
+    // Add the menu item to the cartItems list in the session
+
+    return "redirect:/viewCustCart";
+}
+
 }

@@ -45,7 +45,6 @@
       height: 30px;
       margin-left: 20px;
     }
-    
     body {
       margin: 0;
       padding: 0;
@@ -132,12 +131,12 @@
       <nav>
         <ul>
           <li><a th:href="@{/homePage}">HOME</a></li>
-          <li><a th:href="@{/homePage}">DESSERT MENU</a></li>
+          <li><a th:href="@{/viewMenu}">DESSERT MENU</a></li>
         </ul>
       </nav>
       <div class="icons">
         <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
-        <img src="img/trolley-icon.png" alt="Trolley Icon">
+        <a th:href="@{/custViewCart}" id="trolleyIcon"><img src="img/trolley-icon.png" alt="Trolley Icon"></a>
       </div>
     </div>
   </div>
@@ -145,8 +144,15 @@
 
 <div class="cart-container">
   <h2>Your Cart</h2>
-  <form id="checkoutForm" th:action="@{/makePayment}" method="post">
-    <div id="cartItems"></div>
+  <form id="checkoutForm" th:action="@{/viewCustCart}" method="post">
+    <div id="cartItems">
+      <!-- Generate cart items dynamically -->
+      <div th:each="cartItem : ${cartItems}" class="cart-item">
+        <input type="checkbox" name="cartItem" value="${cartItem.name}" />
+        <span th:text="${cartItem.name} + ' - RM ' + ${cartItem.price}"></span>
+        <i class="fas fa-trash-alt" onclick="removeCartItem('${cartItem.name}')"></i>
+      </div>
+    </div>
 
     <button type="submit" class="checkout-button">Checkout</button>
   </form>
@@ -159,10 +165,10 @@
 <script>
   const cartItemsContainer = document.getElementById('cartItems');
   const totalPriceElement = document.getElementById('totalPrice');
-  const cancelOrderButton = document.getElementById('cancelOrderButton');
+  const checkoutForm = document.getElementById('checkoutForm');
 
-  // Retrieve cart items from localStorage
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  // Retrieve cart items from the server-side model attribute
+  const cartItems = JSON.parse(/* Retrieve the cart items from the server-side model attribute */);
 
   // Function to render the cart items
   function renderCartItems() {
@@ -182,13 +188,13 @@
       cartItem.appendChild(checkbox);
 
       const span = document.createElement('span');
-      span.textContent = `${item.name} - RM ${parseFloat(item.price.slice(2)).toFixed(2)}`;
+      span.textContent = `${item.name} - RM ${parseFloat(item.price).toFixed(2)}`;
       cartItem.appendChild(span);
 
       const deleteIcon = document.createElement('i');
       deleteIcon.classList.add('fas', 'fa-trash-alt');
       deleteIcon.addEventListener('click', () => {
-        removeCartItem(item);
+        removeCartItem(item.name);
       });
       cartItem.appendChild(deleteIcon);
 
@@ -200,41 +206,33 @@
   }
 
   function updateTotalPrice() {
-    const totalPrice = cartItems.reduce((total, item) => {
-      const checkbox = document.querySelector(`input[name="cartItem"][value="${item.name}"]`);
-      if (checkbox.checked) {
-        return total + parseFloat(item.price.slice(2));
-      }
-      return total;
-    }, 0);
+    const totalPrice = Array.from(document.querySelectorAll('input[name="cartItem"]:checked'))
+      .reduce((total, checkbox) => {
+        const item = cartItems.find(item => item.name === checkbox.value);
+        if (item) {
+          return total + parseFloat(item.price);
+        }
+        return total;
+      }, 0);
     totalPriceElement.textContent = `RM ${totalPrice.toFixed(2)}`;
   }
 
   renderCartItems();
 
-  function removeCartItem(item) {
-    const itemIndex = cartItems.findIndex(cartItem => cartItem.name === item.name);
+  function removeCartItem(itemName) {
+    const itemIndex = cartItems.findIndex(item => item.name === itemName);
     if (itemIndex !== -1) {
       cartItems.splice(itemIndex, 1);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
       renderCartItems();
     }
   }
 
-  const checkoutForm = document.getElementById('checkoutForm');
-
   checkoutForm.addEventListener('submit', function (event) {
     event.preventDefault();
     console.log('Checkout button clicked');
-    localStorage.setItem('checkoutClicked', 'true');
+    // Perform the checkout operation
     this.submit();
-  });
-
-  // Check if checkout button was clicked previously
-  const checkoutClicked = localStorage.getItem('checkoutClicked');
-  if (checkoutClicked === 'true') {
-    cancelOrderButton.style.display = 'inline-block';
-  }
+});
 </script>
 </body>
 </html>

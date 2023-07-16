@@ -116,11 +116,6 @@ public class GettingStartedApplication {
         return "custPayment";
     }
 
-    @GetMapping("custViewCart")
-    public String custViewCart() {
-        return "custViewCart";
-    }
-
     @GetMapping("custViewOrder")
     public String custViewOrder() {
         return "custViewOrder";
