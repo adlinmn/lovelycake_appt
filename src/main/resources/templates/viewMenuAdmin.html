@@ -138,50 +138,69 @@
       cursor: pointer;
     }
 
-    .form-popup {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
+    table, th, td {
+    border: 2px solid white;
+    border-collapse: collapse; 
+}
+
+table{
+    width: 90%;
+    margin-top: 50px;
+    margin-left: 70px;
+}
+
+.left{
+    padding: 10px;   
+    background-color:white;
+}
+
+.title{
+    font-size: 18px;
+    padding: 9px;  
+    font-weight: 600;
+    background-color: #f8def3;
+}
+
+.update, .delete{
+    padding: 5px 20px;
+    background: #f8def3;
+    border-color: white;
+    outline: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 5px;
+    color: black;
+}
+
+.update:hover, .delete:hover{
+  background-color: #f8def3;
+}
+
+.update:focus, .delete:focus{
+  background-color: #f8def3;
+    outline: none;
+}
+
+.update-link {
+      text-decoration: none;
+      padding: 5px 20px;
+      background: #f8def3;
+      border-color: white;
+      outline: none;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 5px;
+      color: black;
     }
 
-    .form-container {
-      background-color: #fefefe;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 50%;
+    .update-link:hover {
+      background-color: #f8def3;
     }
 
-    .form-container h2 {
-      margin-top: 0;
-    }
-
-    .form-container label {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .form-container input[type="text"],
-    .form-container input[type="number"],
-    .form-container textarea {
-      width: 100%;
-      padding: 5px;
-    }
-
-    .form-container button {
-      background-color: #ffc0cb;
-      color: #fff;
-      border: none;
-      padding: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
+    .update-link:focus {
+      background-color: #f8def3;
+      outline: none;
     }
   </style>
 </head>
@@ -205,178 +224,25 @@
   </div>
 </header>
 
-<div class="menu-items">
-  <div th:each="menu : ${menus}" class="menu-item">
-    <img th:src="${menu.image}" alt="Menu Image">
-    <h3 th:text="${menu.name}"></h3>
-    <p th:text="${menu.description}"></p>
-    <p class="price" th:text="${menu.price}"></p>
-    <button class="edit-button" th:onclick="'editMenu(\'' + ${menu.id} + '\')'">Edit</button>
-    <button class="delete-button" th:onclick="'deleteMenu(\'' + ${menu.id} + '\')'">Delete</button>
-  </div>
-</div>
-
-<div class="form-popup" id="editForm">
-  <div class="form-container">
-    <h2>Edit Menu Item</h2>
-    <label for="editID">ID:</label>
-    <input type="number" id="editID" name="editID">
-    <label for="editName">Name:</label>
-    <input type="text" id="editName" name="editName">
-    <label for="editDescription">Description:</label>
-    <textarea id="editDescription" name="editDescription"></textarea>
-    <label for="editPrice">Price:</label>
-    <input type="text" id="editPrice" name="editPrice">
-    <button type="button" id="editSubmit">Save</button>
-    <button type="button" id="editCancel">Cancel</button>
-  </div>
-</div>
-
-<script>
-  // Retrieve menu items from the server-side database
-  const menus = /*[[${menus}]]*/ [];
-
-  function generateMenuItems(menus) {
-    const menuContainer = document.querySelector('.menu-items');
-    menuContainer.innerHTML = ''; // Clear existing menu items
-
-    menus.forEach(menu => {
-      const menuItem = document.createElement('div');
-      menuItem.classList.add('menu-item');
-
-      const image = document.createElement('img');
-      image.src = menu.image;
-      image.alt = menu.name;
-      menuItem.appendChild(image);
-
-      const name = document.createElement('h3');
-      name.textContent = menu.name;
-      menuItem.appendChild(name);
-
-      const description = document.createElement('p');
-      description.textContent = menu.description;
-      menuItem.appendChild(description);
-
-      const price = document.createElement('p');
-      price.classList.add('price');
-      price.textContent = menu.price;
-      menuItem.appendChild(price);
-
-      const editButton = document.createElement('button');
-      editButton.classList.add('edit-button');
-      editButton.textContent = 'Edit';
-      menuItem.appendChild(editButton);
-
-      const deleteButton = document.createElement('button');
-      deleteButton.classList.add('delete-button');
-      deleteButton.textContent = 'Delete';
-      menuItem.appendChild(deleteButton);
-
-      menuContainer.appendChild(menuItem);
-
-      // Add event listener for edit button
-      editButton.addEventListener('click', () => {
-        // Display the edit form with pre-filled values
-        document.getElementById('editID').value = menu.id;
-        document.getElementById('editName').value = menu.name;
-        document.getElementById('editDescription').value = menu.description;
-        document.getElementById('editPrice').value = menu.price;
-        document.getElementById('editForm').style.display = 'block';
-      });
-
-      // Add event listener for delete button
-      deleteButton.addEventListener('click', () => {
-        // Remove the menu item from the database
-        fetch(`/deleteMenu?id=${menu.id}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then(() => {
-            // Update the menu items on the page
-            generateMenuItems(menus);
-          })
-          .catch(error => {
-            console.error('Error deleting menu item:', error);
-          });
-      });
-    });
-  }
-
-  generateMenuItems(menus);
-
-  // Event listener for edit form submit button
-  document.getElementById('editSubmit').addEventListener('click', () => {
-    // Get the updated values from the form
-    const updatedID = parseInt(document.getElementById('editID').value);
-    const updatedName = document.getElementById('editName').value;
-    const updatedDescription = document.getElementById('editDescription').value;
-    const updatedPrice = document.getElementById('editPrice').value;
-
-    // Update the menu item in the database
-    fetch(`/updateMenu`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: updatedID,
-        name: updatedName,
-        description: updatedDescription,
-        price: updatedPrice,
-      }),
-    })
-      .then(() => {
-        // Update the menu items on the page
-        generateMenuItems(menus);
-        // Hide the edit form
-        document.getElementById('editForm').style.display = 'none';
-      })
-      .catch(error => {
-        console.error('Error updating menu item:', error);
-      });
-  });
-
-  // Event listener for edit form cancel button
-  document.getElementById('editCancel').addEventListener('click', () => {
-    // Hide the edit form
-    document.getElementById('editForm').style.display = 'none';
-  });
-
-  function editMenu(menuId) {
-    // Retrieve menu item data based on menuId and populate the edit form
-    fetch(`/getMenu?id=${menuId}`)
-      .then(response => response.json())
-      .then(menu => {
-        document.getElementById('editID').value = menu.id;
-        document.getElementById('editName').value = menu.name;
-        document.getElementById('editDescription').value = menu.description;
-        document.getElementById('editPrice').value = menu.price;
-        document.getElementById('editForm').style.display = 'block';
-      })
-      .catch(error => {
-        console.error('Error retrieving menu item:', error);
-      });
-  }
-
-  function deleteMenu(menuId) {
-    // Remove the menu item from the database
-    fetch(`/deleteMenu?id=${menuId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(() => {
-        // Update the menu items on the page
-        generateMenuItems(menus);
-      })
-      .catch(error => {
-        console.error('Error deleting menu item:', error);
-      });
-  }
-</script>
+<table>
+  <tr>
+     <th class="title">MENU ID</th>
+     <th class="title">MENU NAME</th>
+     <th class="title">MENU DESCRIPTION</th>
+     <th class="title">PRICE: RM</th>
+     <th class="title">UPDATE</th>
+     <th class="title">DELETE</th>
+  </tr>
+  <tr th:each="menu : ${menus}">
+    <td class="left" th:text="${menu.menu_id}"></td>
+    <td class="left" th:text="${menu.menu_name}"></td>
+    <td class="left" th:text="${menu.menu_desc}"></td>
+    <td class="left" th:text="${menu.price}"></td>
+    <td class="left">
+      <a class="update-link" th:href="@{/updateMenu(menuId=${menu.menu_id})}">UPDATE</a></td>
+    <td class="left"><button type="submit" class="delete">DELETE</button></td>
+ </tr> 
+</table>
 </body>
 </html>
 

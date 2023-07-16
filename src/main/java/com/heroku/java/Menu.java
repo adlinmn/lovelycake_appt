@@ -1,19 +1,19 @@
 package com.heroku.java;
 
-public class Menus {
+public class Menu {
     private String menu_id;
     private String menu_name;
     private String menu_desc;
     private float price;
 
-    public Menus(String menu_id, String menu_name, String menu_desc, float price) {
+    public Menu(String menu_id, String menu_name, String menu_desc, float price) {
         this.menu_id = menu_id;
         this.menu_name = menu_name;
         this.menu_desc = menu_desc;
         this.price = price;
     }
     
-    public Menus(){
+    public Menu(){
 
     }
     

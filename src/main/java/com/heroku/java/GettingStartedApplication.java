@@ -95,11 +95,6 @@ public class GettingStartedApplication {
        // return "createMenu";
     //}
 
-    @GetMapping("viewMenuAdmin")
-    public String viewMenuAdmin() {
-        return "viewMenuAdmin";
-    }
-
     @GetMapping("adminQR")
     public String adminQR() {
         return "adminQR";

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update Menu</title>
+  <!-- Add your CSS styles here -->
+</head>
+<body>
+  <h1>Update Menu</h1>
+  <form action="/updateMenu" method="post" th:object="${menu}">
+    <input type="hidden" th:field="*{menu_id}">
+    <label for="menu_name">Menu Name:</label>
+    <input type="text" id="menu_name" th:field="*{menu_name}"><br>
+    <label for="menu_desc">Menu Description:</label>
+    <input type="text" id="menu_desc" th:field="*{menu_desc}"><br>
+    <label for="price">Price:</label>
+    <input type="text" id="price" th:field="*{price}"><br>
+    <button type="submit">Update</button>
+  </form>
+</body>
+</html>

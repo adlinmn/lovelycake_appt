@@ -172,13 +172,13 @@
 
   function cancelOrder() {
     localStorage.removeItem('cartItems');
-    window.location.href = /*[[@{/custViewCart}]]*/ 'custViewCart.html'; // Update the page URL
+    window.location.href = /*[[@{/custViewCart}]]*/ '/custViewCart'; // Update the page URL
   }
 
   function makePayment() {
     // Add your payment logic here
     console.log('Payment made');
-    window.location.href = /*[[@{/custPayment}]]*/ 'custPayment.html';// Update the page URL
+    window.location.href = /*[[@{/custPayment}]]*/ '/custPayment';// Update the page URL
   }
 </script>
 </body>
