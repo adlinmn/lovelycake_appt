@@ -216,8 +216,10 @@
     font-size: 16px;
     cursor: pointer;
     margin: 0 auto;
-    
-  
+    }
+
+    .input[type="submit"]:hover {
+      background-color: #df37a2;
     }
     
     a {
@@ -230,7 +232,7 @@
     }
     
     body {
-    background-image: url('img/bg.jpg');
+    background-image: url('img/bg.png');
     background-size: cover;
     }
     .profile-icon {
@@ -322,7 +324,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder="Enter your password">
        
-          <button type="submit">Login</button>
+          <input type="submit" value="Login">
       </form>
       <p class="centered-text">Not a member?</p>
         <a th:href="@{/createAccCust}" class="centered-button create-account-btn">Create Account</a>

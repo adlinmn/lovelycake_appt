@@ -45,7 +45,6 @@
       height: 30px;
       margin-left: 20px;
     }
-    
 
     body {
       margin: 0;
@@ -127,7 +126,6 @@
       color: #ff0000;
       margin-top: 10px;
     }
-    
   </style>
 </head>
 <body>
@@ -151,102 +149,19 @@
   </div>
 </header>
 
-<div class="menu-items"></div>
+<div class="menu-items">
+  <!-- Generate menu items dynamically -->
+  <div th:each="menu : ${menus}" class="menu-item">
+    <h3 th:text="${menu.menu_name}"></h3>
+    <p th:text="${menu.menu_desc}"></p>
+    <p th:text="${menu.price}"></p>
+    <button class="add-to-cart-button">Add to Cart</button>
+  </div>
+</div>
 <div class="feedback-message" id="feedbackMessage"></div>
 
 <script>
-  // Sample menu data for cakes
-  const cakeMenu = [
-    {
-      id: 1,
-      image: 'img/cake1.png',
-      name: 'Strawberry Cheesecake',
-      description: 'Delicious cheesecake with fresh strawberries',
-      price: 'RM40.00'
-    },
-    {
-      id: 2,
-      image: 'img/cake2.png',
-      name: 'Chocolate Fudge Cake',
-      description: 'Rich taste and decadent chocolate fudge cake ever',
-      price: 'RM40.00'
-    },
-    {
-      id: 3,
-      image: 'img/cake3.png',
-      name: 'Rainbow Crepe Cake',
-      description: 'The impressive-looking rainbow crepe cake',
-      price: 'RM35.00'
-    },
-    {
-      id: 4,
-      image: 'img/cake4.png',
-      name: 'Red Velvet Cake',
-      description: 'Delicious cake covered with sweet cream cheese frosting.',
-      price: 'RM40.00'
-    },
-    {
-      id: 5,
-      image: 'img/cake5.png',
-      name: 'Mint Chocolate Chip Cake',
-      description: ' A festive combination of decadent chocolate, sweet mint, and a beautiful mint green',
-      price: 'RM35.00'
-    },
-    {
-      id: 6,
-      image: 'img/cake6.png',
-      name: 'Oreo Ice Cream Cake',
-      description: 'The layers of hot fudge, cool whip and crushed Oreo',
-      price: 'RM35.00'
-    },
-    // Add more cake menu items here
-  ];
-
-  function generateMenuItems(menuItems) {
-    const menuContainer = document.querySelector('.menu-items');
-    menuContainer.innerHTML = ''; // Clear existing menu items
-
-    menuItems.forEach(item => {
-      const menuItem = document.createElement('div');
-      menuItem.classList.add('menu-item');
-
-      const image = document.createElement('img');
-      image.src = item.image;
-      image.alt = item.name;
-      menuItem.appendChild(image);
-
-      const name = document.createElement('h3');
-      name.textContent = item.name;
-      menuItem.appendChild(name);
-
-      const description = document.createElement('p');
-      description.textContent = item.description;
-      menuItem.appendChild(description);
-
-      const price = document.createElement('p');
-      price.textContent = item.price;
-      menuItem.appendChild(price);
-
-      const addToCartButton = document.createElement('button');
-      addToCartButton.classList.add('add-to-cart-button');
-      addToCartButton.textContent = 'Add to Cart';
-      menuItem.appendChild(addToCartButton);
-
-      menuContainer.appendChild(menuItem);
-
-      // Add event listener for add to cart button
-      addToCartButton.addEventListener('click', () => {
-        // Perform add to cart operation
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        cartItems.push(item);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        document.getElementById('feedbackMessage').textContent = 'Successfully added to cart';
-        console.log('Add to cart clicked for menu item:', item.id);
-      });
-    });
-  }
-
-  generateMenuItems(cakeMenu);
+  // Add event listeners and other code...
 </script>
 </body>
 </html>

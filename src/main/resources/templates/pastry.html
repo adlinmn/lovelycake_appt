@@ -45,7 +45,7 @@
       height: 30px;
       margin-left: 20px;
     }
-    
+
     body {
       margin: 0;
       padding: 0;
@@ -147,102 +147,18 @@
   </div>
 </header>
 
-<div class="menu-items"></div>
+<div class="menu-items">
+  <!-- Generate menu items dynamically -->
+  <div th:each="menu : ${menus}" class="menu-item">
+    <h3 th:text="${menu.menu_name}"></h3>
+    <p th:text="${menu.menu_desc}"></p>
+    <p th:text="${menu.price}"></p>
+    <button class="add-to-cart-button">Add to Cart</button>
+  </div>
+</div>
 
 <script>
-  // Sample menu data for pastries
-  const pastryMenu = [
-    {
-      id: 7,
-      image: 'img/pastry1.png',
-      name: 'Croissant',
-      description: 'Flaky and buttery croissant',
-      price: 'RM7.00'
-    },
-    {
-      id: 8,
-      image: 'img/pastry2.png',
-      name: 'Puff pastry',
-      description: 'Very delicate and rich pastry',
-      price: 'RM6.00'
-    },
-    {
-      id: 9,
-      image: 'img/pastry3.png',
-      name: 'Profiteroles',
-      description: 'Small puffed hollow pastry round',
-      price: 'RM2.50'
-    },
-    {
-      id: 10,
-      image: 'img/pastry4.png',
-      name: 'Macaroon',
-      description: 'sweet, small, round French sandwich cookie',
-      price: 'RM3.00'
-    },
-    {
-      id: 11,
-      image: 'img/pastry5.png',
-      name: 'Mini Apple pie',
-      description: 'fruit pie in which the principal filling ingredient is apples',
-      price: 'RM4.00'
-    },
-    {
-      id: 12,
-      image: 'img/pastry6.png',
-      name: 'Cannoli',
-      description: 'fried pastry dough stuffed with a sweet, creamy cheese filling',
-      price: 'RM3.00'
-    },
-    // Add more pastry menu items here
-  ];
-
-  function generateMenuItems(menuItems) {
-    const menuContainer = document.querySelector('.menu-items');
-    menuContainer.innerHTML = ''; // Clear existing menu items
-
-    menuItems.forEach(item => {
-      const menuItem = document.createElement('div');
-      menuItem.classList.add('menu-item');
-
-      const image = document.createElement('img');
-      image.src = item.image;
-      image.alt = item.name;
-      menuItem.appendChild(image);
-
-      const name = document.createElement('h3');
-      name.textContent = item.name;
-      menuItem.appendChild(name);
-
-      const description = document.createElement('p');
-      description.textContent = item.description;
-      menuItem.appendChild(description);
-
-      const price = document.createElement('p');
-      price.classList.add('price');
-      price.textContent = item.price;
-      menuItem.appendChild(price);
-
-      const addToCartButton = document.createElement('button');
-      addToCartButton.classList.add('add-to-cart-button');
-      addToCartButton.textContent = 'Add to Cart';
-      menuItem.appendChild(addToCartButton);
-
-      menuContainer.appendChild(menuItem);
-
-      // Add event listener for add to cart button
-      addToCartButton.addEventListener('click', () => {
-        // Perform add to cart operation
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        cartItems.push(item);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        document.getElementById('feedbackMessage').textContent = 'Successfully added to cart';
-        console.log('Add to cart clicked for menu item:', item.id);
-      });
-    });
-  }
-
-  generateMenuItems(pastryMenu);
+  // Add event listeners and other code...
 </script>
 </body>
 </html>

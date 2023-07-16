@@ -149,4 +149,92 @@ public String deleteMenu(@RequestParam("menuId") String menuId) {
         return "error";
     }
 }
+
+@GetMapping("/pastry")
+public String displayPastryMenu(Model model) {
+    ArrayList<Menu> menus = new ArrayList<>();
+    try (Connection con = dataSource.getConnection()) {
+        String sql = "SELECT *\r\n" + //
+            "FROM menu\r\n" + //
+            "WHERE menu_id LIKE '%lbpastry%'";
+        PreparedStatement statement = con.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String menu_id = rs.getString("menu_id");
+            String menu_name = rs.getString("menu_name");
+            String menu_desc = rs.getString("menu_desc");
+            float price = rs.getFloat("price");
+
+            Menu menu = new Menu(menu_id, menu_name, menu_desc, price);
+            menus.add(menu);
+        }
+        model.addAttribute("menus", menus);
+        return "pastry";
+    } catch (SQLException sqe) {
+        sqe.printStackTrace();
+        return "error";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "error";
+    }
+}
+
+@GetMapping("/cake")
+public String displayCakeMenu(Model model) {
+    ArrayList<Menu> menus = new ArrayList<>();
+    try (Connection con = dataSource.getConnection()) {
+        String sql = "SELECT *\r\n" + //
+            "FROM menu\r\n" + //
+            "WHERE menu_id LIKE '%lbcake%'";
+        PreparedStatement statement = con.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String menu_id = rs.getString("menu_id");
+            String menu_name = rs.getString("menu_name");
+            String menu_desc = rs.getString("menu_desc");
+            float price = rs.getFloat("price");
+
+            Menu menu = new Menu(menu_id, menu_name, menu_desc, price);
+            menus.add(menu);
+        }
+        model.addAttribute("menus", menus);
+        return "cake";
+    } catch (SQLException sqe) {
+        sqe.printStackTrace();
+        return "error";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "error";
+    }
+}
+
+@GetMapping("/cupcake")
+public String displayCupcakeMenu(Model model) {
+    ArrayList<Menu> menus = new ArrayList<>();
+    try (Connection con = dataSource.getConnection()) {
+        String sql = "SELECT *\r\n" + //
+            "FROM menu\r\n" + //
+            "WHERE menu_id LIKE '%lbcupcake%'";
+        PreparedStatement statement = con.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String menu_id = rs.getString("menu_id");
+            String menu_name = rs.getString("menu_name");
+            String menu_desc = rs.getString("menu_desc");
+            float price = rs.getFloat("price");
+
+            Menu menu = new Menu(menu_id, menu_name, menu_desc, price);
+            menus.add(menu);
+        }
+        model.addAttribute("menus", menus);
+        return "cake";
+    } catch (SQLException sqe) {
+        sqe.printStackTrace();
+        return "error";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "error";
+    }
+}
+
 }

@@ -105,19 +105,10 @@ public class GettingStartedApplication {
         return "AdminViewOrder";
     }
 
-    @GetMapping("cake")
-    public String cake() {
-        return "cake";
-    }
 
     @GetMapping("createQR")
     public String createQR() {
         return "createQR";
-    }
-
-    @GetMapping("cupcake")
-    public String cupcake() {
-        return "cupcake";
     }
 
     @GetMapping("custPayment")
@@ -133,11 +124,6 @@ public class GettingStartedApplication {
     @GetMapping("custViewOrder")
     public String custViewOrder() {
         return "custViewOrder";
-    }
-
-    @GetMapping("pastry")
-    public String pastry() {
-        return "pastry";
     }
 
     @GetMapping("makePayment")

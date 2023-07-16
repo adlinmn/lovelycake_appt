@@ -6,47 +6,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <style>
     /* Add your additional styles here */
-
-    body {
-      background-image: url(img/bg.png);
-      background-size: cover;
-    }
-    
-    header .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f8def3;
-      padding: 3px;
-    }
-    
-    header .nav-items {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
-    }
-    
-    header .nav-items nav ul {
-      display: flex;
-      list-style: none;
-    }
-    
-    header .nav-items nav ul li a {
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    
-    header .nav-items .icons {
-      display: flex;
-      align-items: center;
-      margin-left: 20px;
-    }
-    
-    header .nav-items .icons img {
-      height: 30px;
-      margin-left: 20px;
-    }
-    
     body {
       margin: 0;
       padding: 0;
@@ -147,102 +106,18 @@
   </div>
 </header>
 
-<div class="menu-items"></div>
+<div class="menu-items">
+  <!-- Generate menu items dynamically -->
+  <div th:each="menu : ${menus}" class="menu-item">
+    <h3 th:text="${menu.menu_name}"></h3>
+    <p th:text="${menu.menu_desc}"></p>
+    <p th:text="${menu.price}"></p>
+    <button class="add-to-cart-button">Add to Cart</button>
+  </div>
+</div>
 
 <script>
-  // Sample menu data for cupcakes
-  const cupcakeMenu = [
-    {
-      id: 13,
-      image: 'img/cupcake1.png',
-      name: 'Strawberry Cupcake',
-      description: 'These vanilla bean-speckled strawberry shortcake',
-      price: 'RM2.50'
-    },
-    {
-      id: 14,
-      image: 'img/cupcake2.png',
-      name: 'Red velvet Cupcake',
-      description: 'a striking scarlet colour that is velvety and soft',
-      price: 'RM2.50'
-    },
-    {
-      id: 15,
-      image: 'img/cupcake3.png',
-      name: 'Chocolate Chip Cupcake',
-      description: 'A crispy, sky-high muffin top, full of chocolate chips, soft and buttery',
-      price: 'RM2.50'
-    },
-    {
-      id: 16,
-      image: 'img/cupcake4.png',
-      name: 'Caramel Cupcake',
-      description: 'Ultimate Salted Caramel Cupcakes with delicious salted caramel sauce',
-      price: 'RM2.50'
-    },
-    {
-      id: 17,
-      image: 'img/cupcake5.png',
-      name: 'Vanilla Cupcake',
-      description: 'Incredible vanilla cupcakes are light and fluffy with a plush crumb',
-      price: 'RM2.50'
-    },
-    {
-      id: 18,
-      image: 'img/cupcake6.png',
-      name: 'Mint Choc Chip Cupcake',
-      description: 'Mint ice cream swirled with fine chocolate chips',
-      price: 'RM2.50'
-    },
-    // Add more cupcake menu items here
-  ];
-
-  function generateMenuItems(menuItems) {
-    const menuContainer = document.querySelector('.menu-items');
-    menuContainer.innerHTML = ''; // Clear existing menu items
-
-    menuItems.forEach(item => {
-      const menuItem = document.createElement('div');
-      menuItem.classList.add('menu-item');
-
-      const image = document.createElement('img');
-      image.src = item.image;
-      image.alt = item.name;
-      menuItem.appendChild(image);
-
-      const name = document.createElement('h3');
-      name.textContent = item.name;
-      menuItem.appendChild(name);
-
-      const description = document.createElement('p');
-      description.textContent = item.description;
-      menuItem.appendChild(description);
-
-      const price = document.createElement('p');
-      price.classList.add('price');
-      price.textContent = item.price;
-      menuItem.appendChild(price);
-
-      const addToCartButton = document.createElement('button');
-      addToCartButton.classList.add('add-to-cart-button');
-      addToCartButton.textContent = 'Add to Cart';
-      menuItem.appendChild(addToCartButton);
-
-      menuContainer.appendChild(menuItem);
-
-      // Add event listener for add to cart button
-      addToCartButton.addEventListener('click', () => {
-        // Perform add to cart operation
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        cartItems.push(item);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        document.getElementById('feedbackMessage').textContent = 'Successfully added to cart';
-        console.log('Add to cart clicked for menu item:', item.id);
-      });
-    });
-  }
-
-  generateMenuItems(cupcakeMenu);
+  // Add event listeners and other code...
 </script>
 </body>
 </html>
