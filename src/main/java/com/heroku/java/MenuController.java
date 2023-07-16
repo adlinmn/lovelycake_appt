@@ -132,4 +132,21 @@ public String viewMenuAdmin(HttpSession session, Model model) {
       return "error";
     }
   }
+  @PostMapping("/deleteMenu")
+public String deleteMenu(@RequestParam("menuId") String menuId) {
+    try (Connection connection = dataSource.getConnection()) {
+        String sql = "DELETE FROM menu WHERE menu_id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, menuId);
+        statement.executeUpdate();
+        connection.close();
+        return "redirect:/viewMenuAdmin";
+    } catch (SQLException sqe) {
+        sqe.printStackTrace();
+        return "error";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "error";
+    }
+}
 }

@@ -240,7 +240,12 @@ table{
     <td class="left" th:text="${menu.price}"></td>
     <td class="left">
       <a class="update-link" th:href="@{/updateMenu(menuId=${menu.menu_id})}">UPDATE</a></td>
-    <td class="left"><button type="submit" class="delete">DELETE</button></td>
+    <td class="left">
+      <form action="/deleteMenu" method="post">
+        <input type="hidden" name="menuId" th:value="${menu.menu_id}" />
+        <button type="submit" class="delete">DELETE</button>
+      </form>
+    </td>
  </tr> 
 </table>
 </body>

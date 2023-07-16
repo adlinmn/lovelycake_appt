@@ -145,6 +145,11 @@ public class GettingStartedApplication {
         return "makePayment";
     }
 
+    @GetMapping("deleteMenu")
+    public String deleteMenu() {
+        return "deleteMenu";
+    }
+
 
     @GetMapping("/database")
     String database(Map<String, Object> model) {
