@@ -82,7 +82,7 @@ public class CustomerController {
             return returnPage;
         } catch (Throwable t) {
             t.printStackTrace();
-            return "/userlogin";
+            return "userlogin";
         }
     }
 
