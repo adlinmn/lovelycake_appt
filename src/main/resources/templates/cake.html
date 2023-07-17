@@ -121,9 +121,7 @@
       font-size: 16px;
       margin-top: 10px;
     }
-    .feedback-message {
-      text-align: center;
-      color: #ff0000;
+    .menu-item .price {
       margin-top: 10px;
     }
   </style>
@@ -138,7 +136,7 @@
       <nav>
         <ul>
           <li><a th:href="@{/homePage}">HOME</a></li>
-          <li><a th:href="@{/viewMenu}">DESSERT MENU</a></li>
+          <li><a th:href="@{/homelogin}">DESSERT MENU</a></li>
         </ul>
       </nav>
       <div class="icons">
@@ -152,7 +150,7 @@
 <div class="menu-items">
   <!-- Generate menu items dynamically -->
   <div th:each="menu : ${menus}" class="menu-item">
-    <form th:action="@{/viewCustCart}" method="post">
+    <form th:action="@{/custViewCart}" method="post">
       <input type="hidden" name="menuId" th:value="${menu.menu_id}" />
       <h3 th:text="${menu.menu_name}"></h3>
       <p th:text="${menu.menu_desc}"></p>
@@ -165,6 +163,53 @@
 
 <script>
   // Add event listeners and other code...
+  const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+  const feedbackMessage = document.getElementById('feedbackMessage');
+
+  // Add event listeners to each "Add to Cart" button
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Display success message
+      feedbackMessage.textContent = 'Successfully added to cart';
+      feedbackMessage.style.backgroundColor = '#ffc0cb';
+      feedbackMessage.style.display = 'block';
+
+      // Reset message after 2 seconds
+      setTimeout(() => {
+        feedbackMessage.textContent = '';
+        feedbackMessage.style.display = 'none';
+      }, 2000);
+    });
+  });
+  function addToCart(menuId) {
+    fetch('/viewCustCart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `menuId=${encodeURIComponent(menuId)}`,
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Failed to add item to cart');
+        }
+      })
+      .then(data => {
+        displayFeedbackMessage('Item added to cart');
+        console.log(data);
+      })
+      .catch(error => {
+        displayFeedbackMessage('Failed to add item to cart');
+        console.error(error);
+      });
+  }
+
+  function displayFeedbackMessage(message) {
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    feedbackMessage.textContent = message;
+  }
 </script>
 </body>
 </html>

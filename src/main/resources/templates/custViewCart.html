@@ -131,7 +131,7 @@
       <nav>
         <ul>
           <li><a th:href="@{/homePage}">HOME</a></li>
-          <li><a th:href="@{/viewMenu}">DESSERT MENU</a></li>
+          <li><a th:href="@{/homelogin}">DESSERT MENU</a></li>
         </ul>
       </nav>
       <div class="icons">
@@ -142,15 +142,18 @@
   </div>
 </header>
 
-<div class="cart-container">
+<div class="cart-container" id="cartContainer">
   <h2>Your Cart</h2>
-  <form id="checkoutForm" th:action="@{/viewCustCart}" method="post">
+  <form th:action="@{/viewCustCart}" method="post" id="checkoutForm">
     <div id="cartItems">
       <!-- Generate cart items dynamically -->
+      
       <div th:each="cartItem : ${cartItems}" class="cart-item">
-        <input type="checkbox" name="cartItem" value="${cartItem.name}" />
-        <span th:text="${cartItem.name} + ' - RM ' + ${cartItem.price}"></span>
-        <i class="fas fa-trash-alt" onclick="removeCartItem('${cartItem.name}')"></i>
+        <input type="checkbox" name="cartItem" th:value="${cartItem.menu_id}" />
+        <span th:text="${cartItem.menu_name} + ' - RM ' + ${cartItem.price}"></span>
+        <!-- Replace the onclick attribute value in the delete icon -->
+        <i class="fas fa-trash-alt" onclick="removeCartItem('${cartItem.menu_id}')"></i>
+
       </div>
     </div>
 
@@ -162,13 +165,15 @@
   </div>
 </div>
 
-<script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+
   const cartItemsContainer = document.getElementById('cartItems');
   const totalPriceElement = document.getElementById('totalPrice');
   const checkoutForm = document.getElementById('checkoutForm');
 
   // Retrieve cart items from the server-side model attribute
-  const cartItems = JSON.parse(/* Retrieve the cart items from the server-side model attribute */);
+  const cartItems = /*[[${cartItems}]]*/ [];
 
   // Function to render the cart items
   function renderCartItems() {
@@ -181,20 +186,20 @@
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.name = 'cartItem';
-      checkbox.value = item.name;
+      checkbox.value = item.menu_id;
       checkbox.addEventListener('change', () => {
         updateTotalPrice();
       });
       cartItem.appendChild(checkbox);
 
       const span = document.createElement('span');
-      span.textContent = `${item.name} - RM ${parseFloat(item.price).toFixed(2)}`;
+      span.textContent = `${item.menu_name} - RM ${item.price.toFixed(2)}`;
       cartItem.appendChild(span);
 
       const deleteIcon = document.createElement('i');
       deleteIcon.classList.add('fas', 'fa-trash-alt');
       deleteIcon.addEventListener('click', () => {
-        removeCartItem(item.name);
+        removeCartItem(item.menu_id);
       });
       cartItem.appendChild(deleteIcon);
 
@@ -205,12 +210,27 @@
     updateTotalPrice();
   }
 
+  function removeCartItem(menuId) {
+    fetch('/removeCartItem?menuId=' + encodeURIComponent(menuId), { method: 'POST' })
+      .then(response => {
+        if (response.ok) {
+          // Reload the page to reflect the updated cart
+          window.location.reload();
+        } else {
+          throw new Error('Error removing item from cart');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   function updateTotalPrice() {
     const totalPrice = Array.from(document.querySelectorAll('input[name="cartItem"]:checked'))
       .reduce((total, checkbox) => {
-        const item = cartItems.find(item => item.name === checkbox.value);
+        const item = cartItems.find(item => item.menu_id === checkbox.value);
         if (item) {
-          return total + parseFloat(item.price);
+          return total + item.price;
         }
         return total;
       }, 0);
@@ -219,20 +239,9 @@
 
   renderCartItems();
 
-  function removeCartItem(itemName) {
-    const itemIndex = cartItems.findIndex(item => item.name === itemName);
-    if (itemIndex !== -1) {
-      cartItems.splice(itemIndex, 1);
-      renderCartItems();
-    }
-  }
-
-  checkoutForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    console.log('Checkout button clicked');
-    // Perform the checkout operation
-    this.submit();
-});
+  /*]]>*/
 </script>
+
+
 </body>
 </html>
