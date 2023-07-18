@@ -57,7 +57,7 @@ public class AdminController {
         return "error";
     }
 
-    @GetMapping("viewAccAdmin")
+    @GetMapping("/viewAccAdmin")
     public String viewAccAdmin(Model model, HttpSession session) {
         String admin_id = (String) session.getAttribute("admin_id");
 

@@ -4,20 +4,19 @@ import com.heroku.java.bean.Appointment;
 import com.heroku.java.order.dao.AppointmentDAO;
 
 import javax.sql.DataSource;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalTime;
-import java.sql.Time;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.google.gson.Gson;
 
 @WebServlet("/appointment")
 public class AppointmentController extends HttpServlet {
@@ -58,9 +57,23 @@ public class AppointmentController extends HttpServlet {
 
         try {
             appointmentDao.saveAppointment(appointment);
-            response.sendRedirect("createAppointment.html?success=true");
+            response.sendRedirect("appointment.html?success=true");
         } catch (SQLException e) {
             throw new ServletException("Error saving the appointment", e);
         }
     }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Appointment appointment = appointmentDao.getLatestAppointment();
+            Gson gson = new Gson();
+            String json = gson.toJson(appointment);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+        } catch (SQLException e) {
+            throw new ServletException("Error retrieving the appointment", e);
+        }
+    }
 }
+

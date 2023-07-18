@@ -114,47 +114,16 @@ public class CustomerController {
                 model.addAttribute("viewAccCust", viewAccCust);
                 return "viewAccCust";
             } else {
-                return "error";
+                return "redirect:/error";
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    return "error";
+    return "redirect:/error";
 }
 
-    @PostMapping("/viewAccCust")
-    public String viewAccCust(HttpSession session, Model model) {
-        String custemail = (String) session.getAttribute("custemail");
-
-        if (custemail != null) {
-            try (Connection connection = dataSource.getConnection()) {
-                String sql = "SELECT custname, custaddress, custemail, custpassword FROM customer WHERE custemail=?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, custemail);
-                ResultSet resultSet = statement.executeQuery();
-
-                if (resultSet.next()) {
-                    String custname = resultSet.getString("custname");
-                    String custaddress = resultSet.getString("custaddress");
-                    String custpassword = resultSet.getString("custpassword");
-
-                    System.out.println("name from db: " + custname);
-                    Customer viewAccCust = new Customer(custname, custaddress, custemail, custpassword);
-                    model.addAttribute("viewAccCust", viewAccCust);
-                    System.out.println("Session viewAccCust: " + model.getAttribute("viewAccCust"));
-                    return "viewAccCust";
-                } else {
-                    return "error";
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return "error";
-    }
 
     @PostMapping("/updateAcc")
 public String updateAcc(HttpSession session, @ModelAttribute("updateAcc") Customer customer, Model model) {

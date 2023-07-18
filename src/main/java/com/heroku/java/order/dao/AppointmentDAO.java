@@ -4,6 +4,7 @@ import com.heroku.java.bean.Appointment;
 import java.sql.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AppointmentDAO {
@@ -29,5 +30,28 @@ public class AppointmentDAO {
             preparedStatement.executeUpdate();
         }
     }
+    public Appointment getLatestAppointment() throws SQLException {
+    String query = "SELECT * FROM appointments ORDER BY date DESC LIMIT 1";
+
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+         ResultSet resultSet = preparedStatement.executeQuery()) {
+        if (resultSet.next()) {
+            Appointment appointment = new Appointment();
+            appointment.setAppt_name(resultSet.getString("appt_name"));
+            appointment.setCustemail(resultSet.getString("custemail"));
+            appointment.setAppt_phone(resultSet.getString("appt_phone"));
+            appointment.setAppt_address(resultSet.getString("appt_address"));
+            appointment.setDate(resultSet.getDate("date"));
+            appointment.setDay(resultSet.getString("day"));
+            appointment.setTime(resultSet.getTime("time"));
+            appointment.setMessage(resultSet.getString("message"));
+
+            return appointment;
+        }
+    }
+
+    return null;
+}
+
 }
 
