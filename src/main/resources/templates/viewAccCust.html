@@ -14,7 +14,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #f8def3;
+      background-color: #f5f5dc;
       padding: 3px;
     }
     
@@ -65,7 +65,7 @@
       flex-direction: column;
       align-items: center;
       padding: 30px;
-      background-color: #f6d8ef;
+      background-color: #f5f5dc;
       max-width: 800px;
       margin: 0 auto;
       opacity: 0.74;
@@ -141,7 +141,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #fbd1e3;
+        background-color: #f5f5dc;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
@@ -163,7 +163,7 @@
         margin: 0 10px;
         padding: 10px 20px;
         font-size: 16px;
-        background-color: #C896BC;
+        background-color: #f5f5dc;
         color: white;
         border: none;
         border-radius: 5px;
@@ -171,7 +171,7 @@
       }
   
       .popup-buttons button:hover {
-        background-color: #f8d7e3;
+        background-color: #f5f5dc;
         color: #000000;
       }
     
@@ -260,18 +260,18 @@ input[type="button"] {
     <header>
     <div class="nav-container">
       <div class="logo">
-        <h1>LOVELY CAKE BAKERY</h1>
+        <h1>LOVELY WEDDING CAKE</h1>
       </div>
       <div class="nav-items">
         <nav>
           <ul>
             <li><a th:href="@{/homePage}"style="color: black;">HOME</a></li>
-            <li><a href="#" style="color: black;">DESSERT MENU</a></li>
+            <li><a th:href="@{/menu}" style="color: black;">CAKE</a></li>
+            <li><a th:href="@{/creatAppointment}">APPOINTMENT</a></li>
           </ul>
         </nav>
         <div class="icons">
           <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
-          <img src="img/trolley-icon.png" alt="Trolley Icon">
         </div>
       </div>
     </div>
@@ -279,20 +279,20 @@ input[type="button"] {
   <div class="container">
     <h2>My Account</h2>
     
-    <form th:action="@{/updateAcc}" method="post" th:object="${viewAccCust}">
+    <form th:action="@{${#httpServletRequest.contextPath}/updateAcc}" method="post" th:object="${viewAccCust}">
       <!-- <input type="text" id="email" th:value="${viewAccCust.email}" readonly> -->
-      <br><br>
       <label for="name">NAME</label> <br>
-      <input type="text" id="name" name="name" th:value="${viewAccCust.name}">
+      <input type="text" id="name" name="name" th:value="${viewAccCust.name}" th:field="*{name}">
       <br><br>
 
       <label for="address">ADDRESS</label> <br>
-      <input type="text" id="address" name="address" th:value="${viewAccCust.address}">
+      <input type="text" id="address" name="address" th:value="${viewAccCust.address}" th:field="*{address}">
       <br><br>
 
       <label for="password">PASSWORD</label> <br>
-      <input type="password" id="password" name="password" th:value="${viewAccCust.password}">
+      <input type="password" id="password" name="password" th:value="${viewAccCust.password}" th:field="*{password}">
       <br><br>
+
 
       <div class="form-buttons">
         <a class="back" th:href="@{/index}">BACK</a>

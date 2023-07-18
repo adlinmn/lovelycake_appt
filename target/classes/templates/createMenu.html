@@ -7,7 +7,7 @@
   <style>
     /* Add your additional styles here */
     body {
-    background-image: url('/img/bg.png');
+    background-image: url('/img/weddingBG.png'); /* Updated background image */
     background-size: cover;
   }
 
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8def3;
+    background-color: #f5f5dc; /* Updated color */
     padding: 3px;
   }
 
@@ -33,6 +33,7 @@
   header .nav-items nav ul li a {
     margin: 0 10px;
     text-decoration: none;
+    color: #000000; /* Updated color */
   }
 
   header .nav-items .icons {
@@ -50,7 +51,7 @@
       padding: 0;
     }
     .header {
-      background-color: #f8def3;
+      background-color: #f5f5dc; /* Updated color */
       padding: 3px;
     }
     .logo {
@@ -60,7 +61,7 @@
     .logo h1 {
       font-size: 24px;
       margin: 0;
-      color: #000000;
+      color: #000000; /* Updated color */
     }
     .nav {
       display: flex;
@@ -79,25 +80,25 @@
     }
     .nav a {
       text-decoration: none;
-      color: #fff;
+      color: #000000; /* Updated color */
       font-size: 16px;
     }
     .hero-section {
       background-image: url('img/cute-cake-background.jpg');
       background-size: cover;
       background-position: center;
-      color: #fff;
+      color: #f5f5dc; /* Updated color */
       padding: 5px;
       text-align: center;
     }
     .hero-section h2 {
       font-size: 36px;
       margin-bottom: 20px;
-      color: #ffc0cb;
+      color: #f5f5dc; /* Updated color */
     }
     .hero-section p {
       font-size: 18px;
-      color: #ffc0cb;
+      color: #f5f5dc; /* Updated color */
     }
     .create-menu-container {
       display: flex;
@@ -119,7 +120,7 @@
       width: 300px;
       height: 200px;
       border-radius: 10px;
-      border: 2px solid #ffc0cb;
+      border: 2px solid #f5f5dc; /* Updated color */
       background-color: #ffffff;
       overflow: hidden;
     }
@@ -132,8 +133,8 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      background-color: #ffc0cb;
-      color: #fff;
+      background-color: #f5f5dc; /* Updated color */
+      color: #000000; /* Updated color */
       border-radius: 50%;
       padding: 5px;
       cursor: pointer;
@@ -150,16 +151,16 @@
     .menu-details textarea {
       width: 100%;
       padding: 10px;
-      border: 2px solid #ffc0cb;
+      border: 2px solid #f5f5dc; /* Updated color */
       border-radius: 10px;
       margin-bottom: 10px;
       font-size: 16px;
     }
     .menu-details button {
       padding: 10px 20px;
-      background-color: #ffc0cb;
+      background-color: #f5f5dc; /* Updated color */
       border: none;
-      color: #fff;
+      color: #000000; /* Updated color */
       font-size: 16px;
       cursor: pointer;
     }
@@ -169,10 +170,10 @@
       left: 50%;
       transform: translate(-50%, -50%);
       display: none;
-      background-color: #ffc0cb;
+      background-color: #f5f5dc; /* Updated color */
       border-radius: 10px;
       padding: 20px;
-      color: #fff;
+      color: #000000; /* Updated color */
       text-align: center;
     }
     .confirmation-message h3 {
@@ -181,9 +182,9 @@
     }
     .confirmation-message button {
       padding: 10px 20px;
-      background-color: #fff;
+      background-color: #ffffff; /* Updated color */
       border: none;
-      color: #000;
+      color: #000000; /* Updated color */
       font-size: 16px;
       cursor: pointer;
       margin-right: 10px;
@@ -206,13 +207,7 @@
     }
     /* Add this CSS code to your existing styles */
     .category-selection {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .category-selection label {
-      margin-right: 10px;
+      display: none; /* Hide the category selection */
     }
   </style>
 </head>
@@ -226,7 +221,6 @@
       <nav>
         <ul>
           <li><a th:href="@{/adminHomePage}">HOME</a></li>
-          <li><a href="#">DESSERT MENU</a></li>
         </ul>
       </nav>
       <div class="icons">
@@ -237,7 +231,7 @@
 </header>
 
 <div class="hero-section">
-  <h2>CREATE MENU</h2>
+  <h2>CREATE CAKE MENU</h2>
 </div>
 
 <div class="create-menu-container">
@@ -250,23 +244,12 @@
     </div>
   </div>
   <div class="menu-details">
-    <div class="category-selection">
-      <label>
-        <input type="radio" name="category" value="Cake" checked> Cake
-      </label>
-      <label>
-        <input type="radio" name="category" value="Pastry"> Pastry
-      </label>
-      <label>
-        <input type="radio" name="category" value="Cupcake"> Cupcake
-      </label>
-    </div>
     <form id="menuForm" modelAttribute="menu" th:action="@{/createMenu}" method="post" th:object="${viewMenuAdmin}">
       <input type="text" placeholder="Menu ID" name="menu_id" required>
       <input type="text" placeholder="Name of the Product" name="menu_name" required>
       <input type="text" placeholder="Description" name="menu_desc" required>
       <input type="text" placeholder="Price" name="price" required>
-      <button type="submit">Submit</button>
+      <button type="submit" style="background-color: #f5f5dc; color: #000000;">Submit</button> <!-- Updated button color -->
     </form>
   </div>
 </div>

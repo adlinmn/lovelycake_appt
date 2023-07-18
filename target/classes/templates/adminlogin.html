@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8def3;
+    background-color: #f5f5dc;
     padding: 3px;
   }
   
@@ -75,11 +75,13 @@
   }
   
   input[type="submit"] {
-    background-color: #F6D8EF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    background-color: #f5f5dc;
+    color: #000000;
+    border: 1px solid #964b00;
+    border-color: #000000;
+    border-radius: 10px;
     padding: 10px 20px;
+    font-weight: bold;
     font-size: 16px;
     cursor: pointer;
     margin: 0 auto;
@@ -123,13 +125,13 @@
 <header>
   <div class="nav-container">
     <div class="logo">
-      <h1>LOVELY CAKE BAKERY</h1>
+      <h1>LOVELY WEDDING CAKE</h1>
     </div>
     <div class="nav-items">
       <nav>
         <ul>
           <li><a th:href="@{/adminHomePage}">HOME</a></li>
-          <li><a th:href="@{/homelogin}">DESSERT MENU</a></li>
+          <li><a th:href="@{/homelogin}">CAKES</a></li>
         </ul>
       </nav>
       <div class="icons">

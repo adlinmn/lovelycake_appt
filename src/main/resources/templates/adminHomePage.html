@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Admin Homepage</title>
+    <title>Lovely Wedding Cake Appointment</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
@@ -9,9 +9,14 @@
       body {
         margin: 0;
         padding: 0;
+        background-image: url('img/weddingBG.png');
+        background-color: #f2f2f2;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
       }
       .header {
-        background-color: #f8def3;
+        background-color: #f5f5dc;
         padding: 3px;
       }
       .logo {
@@ -44,59 +49,51 @@
         font-size: 16px;
       }
       header .nav-container {
-	    display: flex;
-	  justify-content: space-between;
-	  align-items: center;
-	  background-color: #f8def3;
-	  padding: 3px;
-    }
-  
-    header .nav-items {
-	    display: flex;
-	    align-items: center;
-	    margin-left: auto;
-    }
-  
-    header .nav-items nav ul {
-	    display: flex;
-	    list-style: none;
-    }
-  
-    header .nav-items nav ul li {
-	    margin: 0 10px;
-    }
-  
-    header .nav-items .icons {
-	    display: flex;
-	    align-items: center;
-	    margin-left: 20px;
-    }
-  
-    header .nav-items .icons img {
-	    height: 30px;
-	    margin-left: 20px;
-    }
-    
-    body {
-  
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-      background-image: url('/img/bg.png');
-    }
-    
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      align-content: left;/* Align content to the left */
-    }
-    
-    .user-icon {
-      width: 100px;
-      height: 100px;
-      margin-right: 10px; /* Add some spacing between the icon and buttons */
-    }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5f5dc;
+        padding: 3px;
+      }
+
+      header .nav-items {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+
+      header .nav-items nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      header .nav-items nav ul li {
+        margin: 0 10px;
+      }
+
+      header .nav-items .icons {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+      }
+
+      header .nav-items .icons img {
+        height: 30px;
+        margin-left: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        align-content: left; /* Align content to the left */
+      }
+
+      .user-icon {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px; /* Add some spacing between the icon and buttons */
+      }
       .hero-section {
         background-image: url('img/cute-cake-background.jpg');
         background-size: cover;
@@ -108,11 +105,11 @@
       .hero-section h2 {
         font-size: 36px;
         margin-bottom: 20px;
-        color: #ffc0cb;
+        color: #808052;
       }
       .hero-section p {
         font-size: 18px;
-        color: #ffc0cb;
+        color: #808052;
       }
       .admin-container {
         display: flex;
@@ -125,7 +122,7 @@
         flex-basis: 33.33%;
         padding: 20px;
         border-radius: 10px;
-        border: 2px solid #ffc0cb;
+        border: 2px solid #f5f5dc;
         background-color: #ffffff;
         transition: transform 0.3s ease-in-out;
         margin: 10px;
@@ -144,17 +141,16 @@
     <header>
       <div class="nav-container">
         <div class="logo">
-          <h1>LOVELY CAKE BAKERY</h1>
+          <h1>LOVELY WEDDING CAKE </h1>
         </div>
         <div class="nav-items">
           <nav>
             <ul>
-              <li><a th:href="@{adminHomePage}">HOME</a></li>
-              <li><a href="#">DESSERT MENU</a></li>
+              <li><a th:href="@{/adminHomepage}">HOME</a></li>
             </ul>
           </nav>
           <div class="icons">
-            <a th:href="@{/indexAdmin}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
+            <a th:href="@{/profile}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
           </div>
         </div>
       </div>
@@ -166,31 +162,22 @@
 
     <div class="admin-container">
       <div class="admin-box">
-        <a th:href="@{/createMenu}">Create Dessert Menu</a>
+        <a th:href="@{/createMenu}">Create Wedding Cake Menu</a>
       </div>
       <div class="admin-box">
-        <a th:href="@{/viewMenuAdmin}">Delete Dessert Menu</a>
+        <a th:href="@{/updateMenu}">Update Wedding Cake Menu</a>
       </div>
       <div class="admin-box">
-        <a th:href="@{/createQR}">Create QR code</a>
+        <a th:href="@{/deleteMenu}">Delete Wedding Cake Menu</a>
       </div>
       <div class="admin-box">
-        <a th:href="@{/viewMenuAdmin}">View Dessert Menu</a>
+        <a th:href="@{/viewMenu}">View Wedding Cake Menu</a>
       </div>
       <div class="admin-box">
-        <a th:href="@{/AdminViewOrder}">View Order</a>
+        <a th:href="@{/viewAppointment}">View Customer Appointment</a>
       </div>
       <div class="admin-box">
-        <a th:href="@{/adminQR}">Update QR code</a>
-      </div>
-      <div class="admin-box">
-        <a th:href="@{/viewMenuAdmin}">Update Dessert Menu</a>
-      </div>
-      <div class="admin-box">
-        <a href="#">Confirm Order</a>
-      </div>
-      <div class="admin-box">
-        <a href="#">Delete QR code</a>
+        <a th:href="@{/confirmAppointment}">Confirm Customer Appointment</a>
       </div>
     </div>
 

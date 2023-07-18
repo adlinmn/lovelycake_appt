@@ -43,12 +43,6 @@ public class GettingStartedApplication {
     }
 
 
-
-    // @GetMapping("createAccCust")
-    // public String createAccCust() {
-    //     return "createAccCust";
-    // }
-
     //@GetMapping("createAccAdmin")
     //public String createAccAdmin() {
        // return "createAccAdmin";
@@ -90,10 +84,10 @@ public class GettingStartedApplication {
         return "updateAcc";
     }
 
-    //@GetMapping("createMenu")
-    //public String createMenu() {
-       // return "createMenu";
-    //}
+    @GetMapping("createAppointment")
+    public String createAppointment() {
+       return "createAppointment";
+    }
 
     @GetMapping("adminQR")
     public String adminQR() {
@@ -132,6 +126,8 @@ public class GettingStartedApplication {
     }
 
 
+
+
     @GetMapping("/database")
     String database(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
@@ -160,4 +156,3 @@ public class GettingStartedApplication {
     
 }
   }
-

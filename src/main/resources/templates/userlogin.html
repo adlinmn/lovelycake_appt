@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8def3;
+    background-color: #f5f5dc;
     padding: 3px;
     }
     
@@ -75,7 +75,7 @@
     }
     
     input[type="button"] {
-    background-color: #F6D8EF;
+    background-color: #f5f5dc;
     color: #060606;
     border: none;
     border-radius: 5px;
@@ -106,7 +106,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #fbd1e3;
+        background-color: #f5f5dc;
         padding: 0px;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
@@ -129,21 +129,21 @@
         padding: 10px 20px;
         font-size: 16px;
         background-color: #fff;
-        color: #ffb9d7;
+        color: #f5f5dc;
         border: none;
         border-radius: 5px;
         cursor: pointer;
       }
   
       .popup-buttons button:hover {
-        background-color: #f8d7e3;
+        background-color: #f5f5dc;
       }
     
       header .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8def3;
+    background-color: #f5f5dc;
     padding: 3px;
     }
     
@@ -208,7 +208,7 @@
     }
     
     input[type="submit"] {
-    background-color: #F6D8EF;
+    background-color: #f5f5dc;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -219,7 +219,7 @@
     }
 
     .input[type="submit"]:hover {
-      background-color: #df37a2;
+      background-color: #f5f5dc;
     }
     
     a {
@@ -247,7 +247,7 @@
     .create-account-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #F6D8EF;
+    background-color: #f5f5dc;
     color: #060606;
     border-radius: 20px;
     text-decoration: none;
@@ -255,7 +255,7 @@
   }
   
   .create-account-btn:hover {
-    background-color: #F8B3D2;
+    background-color: #f5f5dc;
   }
   .container {
       max-width: 500px;
@@ -295,18 +295,19 @@
     <header>
       <div class="nav-container">
         <div class="logo">
-          <h1>LOVELY CAKE BAKERY</h1>
+          <h1>LOVELY WEDDING CAKE</h1>
         </div>
         <div class="nav-items">
           <nav>
             <ul>
-              <li><a th:href="@{/}">HOME</a></li>
-              <li><a href="#">DESSERT MENU</a></li>
+              <li><a th:href="@{/homePage}">HOME</a></li>
+              <li><a th:href="@{/menu}">CAKE</a></li>
+              <li><a th:href="@{/creatAppointment}">APPOINTMENT</a></li>
+  
             </ul>
           </nav>
           <div class="icons">
             <a th:href="@{/index}"><img src="img/profile-icon.png" alt="Profile Icon"></a>
-            <img src="img/trolley-icon.png" alt="Trolley Icon">
           </div>
         </div>
       </div>
